@@ -1,0 +1,19 @@
+# SARS-CoV-2 メインプロテアーゼ (8HEF)
+wget https://files.rcsb.org/download/8hef.pdb
+
+# ヒト ジヒドロオロターゼ (8GVZ)
+wget https://files.rcsb.org/download/8gvz.pdb
+
+# ヒト FABP5 (7G01)
+wget https://files.rcsb.org/download/7g01.pdb
+
+
+
+
+cat << 'EOF' > ligands.txt
+CN1C=C2C=C(C(=CC2=N1)Cl)NC3=NC(=O)N(C(=O)N3CC4=CC(=C(C=C4F)F)F)CC5=NN(C=N5)C
+O=C1NC(=O)C(F)=CN1
+n1c(c(c(c2c1ccc(c2)Cl)c1ccccc1)C(=O)O)N1CCCCC1
+EOF
+
+

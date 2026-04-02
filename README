@@ -1,0 +1,534 @@
+# DiffDock + GNINA Large-Scale Screening Pipeline README
+
+このリポジトリには、**DiffDock** で複数のリガンド候補のポーズを生成し、**GNINA** で再評価し、その後 **各化合物の代表ポーズを抽出**するための 2 つの Python スクリプトが含まれています。
+
+- `run_diffgnina_10k.py`  
+  大量の SMILES を **チャンク単位**で処理し、DiffDock → GNINA 評価 → フィルタ済み CSV 保存までを行います。
+
+- `extract_top_poses.py`  
+  `filtered_results.csv` を読み込み、**各化合物について最も高い Affinity (pK) を持つポーズを 1 つ選び**、SDF を別ディレクトリにまとめます。
+
+この README では、準備から実行、出力結果の読み方までを順番に説明します。
+
+---
+
+## 🧭 概要
+まず全体の流れは次の通りです。
+
+1. **タンパク質構造（PDB）** と **リガンド候補（SMILES リスト）** を準備
+2. `run_diffgnina_10k.py` を実行
+   - SMILES をチャンクに分割
+   - DiffDock で各リガンドのポーズを複数生成
+   - GNINA で各ポーズを再評価
+   - 条件を満たしたポーズを `filtered_results.csv` に保存
+3. `extract_top_poses.py` を実行
+   - 各化合物ごとに最良ポーズを 1 つ抽出
+   - `top_affinity_poses/` に SDF をコピーして保存
+
+---
+
+## 📦 必要なもの
+このパイプラインを実行するには、以下が必要です。
+
+### 必須ファイル
+- 標的タンパク質の **PDB ファイル**
+- 1 行 1 SMILES 形式の **テキストファイル**
+
+### 必須ソフトウェア
+- Python 3
+- `pandas`
+- `pyyaml`
+- **DiffDock** 本体
+- **GNINA** 実行バイナリ
+
+### 想定ディレクトリ構成
+このスクリプトは、**カレントディレクトリに `DiffDock/` フォルダがあること**、および **`./gnina` という実行ファイルがあること**を前提にしています。
+
+例:
+
+```text
+project/
+├── run_diffgnina_10k.py
+├── extract_top_poses.py
+├── target.pdb
+├── ligands.smi
+├── gnina
+└── DiffDock/
+    ├── inference.py
+    ├── default_inference_args.yaml
+    └── ...
+```
+
+---
+
+## 🧪 入力ファイルの形式
+
+### タンパク質 PDB
+例: `target.pdb`
+
+```text
+ATOM      1  N   ...
+ATOM      2  CA  ...
+...
+```
+
+### SMILES リスト
+例: `ligands.smi`
+
+```text
+CCO
+CCN(CC)CC
+c1ccccc1
+CC(=O)Oc1ccccc1C(=O)O
+```
+
+**注意:**  
+- 1 行に 1 つの SMILES を書いてください
+- 空行は無視されます
+- コメント行や CSV 形式は想定していません
+
+---
+
+# 1. `run_diffgnina_10k.py` の使い方
+
+このスクリプトは、**大規模スクリーニング用の本体**です。
+
+## 🔍 何をするスクリプトか
+このスクリプトは次の処理を行います。
+
+- SMILES リストを `chunk_size` 個ずつに分割
+- 各チャンクについて DiffDock を実行
+- 出力された各 pose を GNINA `--score_only` で評価
+- `Model Conf` と `CNN Pose Score` の閾値でフィルタ
+- 通過したポーズを `filtered_results.csv` に追記保存
+
+---
+
+## ⚙️ コマンドライン引数
+以下が指定できる引数です。
+
+| **引数** | **必須** | **説明** | **デフォルト** |
+|---|---|---:|---:|
+| `-p` | 必須 | 標的タンパク質の PDB ファイル | - |
+| `-l` | 必須 | SMILES リストのテキストファイル | - |
+| `-dp` | 任意 | 1 リガンドあたりの DiffDock pose 数 | `20` |
+| `-mc` | 任意 | DiffDock model confidence の下限 | `-2.0` |
+| `-cp` | 任意 | GNINA CNN pose score の下限 | `0.3` |
+| `-w`, `--workers` | 任意 | GNINA 並列ワーカー数 | `1` |
+| `-c`, `--chunk_size` | 任意 | 1 回に処理するリガンド数 | `100` |
+| `-s`, `--start_idx` | 任意 | 処理開始インデックス（0 始まり） | `0` |
+
+---
+
+## 🧠 チャンクとは
+大量のリガンドを**一気に処理せず、少しずつのかたまりに分けて処理する単位**です。
+
+たとえば、`ligands.smi` に 1000 個の SMILES があり、`--chunk_size 100` を指定すると、
+
+- 0〜99
+- 100〜199
+- 200〜299
+- ...
+
+という **100 個ずつのグループ**に分けて順番に処理します。
+
+これにより、
+
+- メモリやディスク負荷の分散
+- 途中停止時の被害縮小
+- `--start_idx` を使った再開
+
+がしやすくなります。
+
+---
+
+## ✅ 最初に試すおすすめコマンド
+まずは小さめの条件で動作確認するのがおすすめです。
+
+```bash
+python run_diffgnina_10k.py \
+  -p target.pdb \
+  -l ligands.smi \
+  -dp 10 \
+  -mc -2.0 \
+  -cp 0.3 \
+  -w 2 \
+  -c 50 \
+  -s 0
+```
+
+### この設定の意味
+- `-dp 10`  
+  各リガンドにつき 10 ポーズ生成
+- `-mc -2.0`  
+  DiffDock confidence を広めに許容
+- `-cp 0.3`  
+  GNINA CNN pose score の標準的な足切り
+- `-w 2`  
+  GNINA を 2 並列で実行
+- `-c 50`  
+  50 リガンドずつ処理
+- `-s 0`  
+  先頭から開始
+
+---
+
+## 🚀 本番向けのおすすめコマンド
+バランスの良い標準設定です。
+
+```bash
+python run_diffgnina_10k.py \
+  -p target.pdb \
+  -l ligands.smi \
+  -dp 20 \
+  -mc -1.5 \
+  -cp 0.4 \
+  -w 4 \
+  -c 100 \
+  -s 0
+```
+
+この設定は、**速度・網羅性・フィルタ強度のバランス**が良いです。
+
+---
+
+## 🔁 途中から再開する方法
+もし途中で停止した場合は、`--start_idx` を使って再開できます。
+
+たとえば、`chunk_size=100` で 0〜299 まで完了しているなら、次は 300 から開始します。
+
+```bash
+python run_diffgnina_10k.py \
+  -p target.pdb \
+  -l ligands.smi \
+  -dp 20 \
+  -mc -1.5 \
+  -cp 0.4 \
+  -w 4 \
+  -c 100 \
+  -s 300
+```
+
+**注意:**  
+このスクリプトは CSV に追記保存するため、既に処理したインデックスを重ねて実行すると、`filtered_results.csv` に重複が入る可能性があります。  
+再開位置は慎重に指定してください。
+
+---
+
+## 📁 出力ファイル
+実行すると主に次のものができます。
+
+### `results/`
+DiffDock の出力ディレクトリです。
+
+例:
+
+```text
+results/
+├── complex_0/
+│   ├── rank1_confidence-0.45.sdf
+│   ├── rank2_confidence-1.12.sdf
+│   └── ...
+├── complex_1/
+│   └── ...
+└── ...
+```
+
+### `filtered_results.csv`
+GNINA 評価後、条件を通過した pose の一覧です。
+
+主な列:
+
+| **列名** | **内容** |
+|---|---|
+| `Complex ID` | `complex_0` のようなリガンド識別子 |
+| `SMILES` | 入力 SMILES |
+| `Orig Rank` | DiffDock の元順位 |
+| `Model Conf` | DiffDock confidence |
+| `CNN Pose Score` | GNINA の CNNscore |
+| `Affinity (pK)` | GNINA の CNNaffinity |
+| `Vina Score` | GNINA の Affinity |
+| `File Path` | 対応する SDF ファイルパス |
+
+---
+
+## 📊 `filtered_results.csv` の見方
+たとえば 1 つの `Complex ID` に対して複数行ある場合、それは**同じ化合物の複数 pose**です。
+
+例:
+
+| **Complex ID** | **Orig Rank** | **Model Conf** | **CNN Pose Score** | **Affinity (pK)** |
+|---|---:|---:|---:|---:|
+| complex_12 | 1 | -0.81 | 0.72 | 6.10 |
+| complex_12 | 4 | -1.20 | 0.85 | 6.45 |
+| complex_12 | 7 | -0.95 | 0.61 | 5.88 |
+
+この場合、`complex_12` には 3 つの候補 pose が残っています。  
+後段の `extract_top_poses.py` では、この中から **Affinity (pK) が最大**の行を選びます。
+
+---
+
+## 💡 引数調整の目安
+以下は実務で使いやすい目安です。
+
+| **目的** | **推奨設定** |
+|---|---|
+| まず試す | `-dp 10 -mc -2.0 -cp 0.3 -w 2 -c 50` |
+| 標準運用 | `-dp 20 -mc -1.5 -cp 0.4 -w 4 -c 100` |
+| 広く探索 | `-dp 30 -mc -2.0 -cp 0.3 -w 4 -c 100` |
+| 厳しめ選抜 | `-dp 20 -mc -1.0 -cp 0.5 -w 4 -c 100` |
+
+---
+
+## ⚠️ 注意点
+このスクリプトを使う際の注意です。
+
+- `DiffDock/` フォルダがカレントディレクトリに必要です
+- `./gnina` 実行ファイルが必要です
+- `filtered_results.csv` は**追記保存**されます
+- 同じチャンクを再実行すると結果が重複する可能性があります
+- `input.csv` は毎回上書きされます
+- SMILES は 1 行 1 つの単純テキスト形式を前提とします
+
+---
+
+# 2. `extract_top_poses.py` の使い方
+
+このスクリプトは、`run_diffgnina_10k.py` の後処理として使います。
+
+## 🔍 何をするスクリプトか
+`filtered_results.csv` を読み込み、
+
+- `Complex ID` ごとにグループ化
+- `Affinity (pK)` が最大の行を 1 件選択
+- 選ばれた pose を `Affinity (pK)` の高い順に並べる
+- 結果を表として表示
+- SDF を `top_affinity_poses/` にコピー
+
+します。
+
+つまり、**各化合物の代表 pose を 1 つだけ抜き出すツール**です。
+
+---
+
+## ✅ 実行コマンド
+```bash
+python extract_top_poses.py
+```
+
+引数はありません。  
+カレントディレクトリに `filtered_results.csv` があることを前提に動きます。
+
+---
+
+## 📊 実行すると何が起きるか
+まずコンソールに表が表示されます。
+
+例:
+
+```text
+🏆 各化合物の GNINA Affinity (pK) トップポーズ
+==========================================================================================
+| Complex ID | SMILES     | Orig Rank | Affinity (pK) | CNN Pose Score |
+|------------|------------|-----------|---------------|----------------|
+| complex_12 | CCO        | 4         | 6.4500        | 0.8500         |
+| complex_3  | c1ccccc1   | 1         | 6.1200        | 0.7900         |
+| complex_7  | CCN(CC)CC  | 2         | 5.9800        | 0.8100         |
+==========================================================================================
+```
+
+その後、対応する SDF が `top_affinity_poses/` にコピーされます。
+
+---
+
+## 📁 出力ディレクトリ
+作成されるディレクトリ:
+
+```text
+top_affinity_poses/
+├── 01_complex_12_OrigRank4_pKd_6.45.sdf
+├── 02_complex_3_OrigRank1_pKd_6.12.sdf
+└── 03_complex_7_OrigRank2_pKd_5.98.sdf
+```
+
+ファイル名には以下の情報が含まれます。
+
+- 全体ランキング
+- `Complex ID`
+- DiffDock の元順位 (`Orig Rank`)
+- `Affinity (pK)` 値
+
+これにより、どの pose が選ばれたかをファイル名だけで把握できます。
+
+---
+
+## 🧠 どういう基準で「トップ」を選ぶのか
+このスクリプトは、**各化合物について `Affinity (pK)` が最大の pose** を選びます。
+
+重要なのは、この `"Affinity (pK)"` 列は前段スクリプトで **GNINA の `CNNaffinity`** から作られている点です。
+
+つまりこのスクリプトは、
+
+- pose の形状らしさ (`CNN Pose Score`) ではなく
+- 結合力指標としての `Affinity (pK)` を優先して
+
+代表 pose を選んでいます。
+
+---
+
+## ✅ 典型的な使い方の流れ
+ここまでを一連の作業として書くと、次のようになります。
+
+### Step 1: スクリーニング実行
+```bash
+python run_diffgnina_10k.py \
+  -p target.pdb \
+  -l ligands.smi \
+  -dp 20 \
+  -mc -1.5 \
+  -cp 0.4 \
+  -w 4 \
+  -c 100 \
+  -s 0
+```
+
+### Step 2: 各化合物の最良ポーズ抽出
+```bash
+python extract_top_poses.py
+```
+
+### Step 3: 結果確認
+- `filtered_results.csv` を表計算ソフトや pandas で確認
+- `top_affinity_poses/` の SDF を PyMOL, Chimera, MOE, Discovery Studio などで確認
+
+---
+
+## 🧪 小さなサンプルでの実行例
+ここでは 5 化合物だけの例を示します。
+
+### `ligands.smi`
+```text
+CCO
+CCN(CC)CC
+c1ccccc1
+CC(=O)Oc1ccccc1C(=O)O
+CCOC(=O)c1ccccc1
+```
+
+### 実行
+```bash
+python run_diffgnina_10k.py \
+  -p target.pdb \
+  -l ligands.smi \
+  -dp 10 \
+  -mc -2.0 \
+  -cp 0.3 \
+  -w 2 \
+  -c 5 \
+  -s 0
+```
+
+### 想定される `filtered_results.csv` の一部
+| **Complex ID** | **SMILES** | **Orig Rank** | **Model Conf** | **CNN Pose Score** | **Affinity (pK)** | **File Path** |
+|---|---|---:|---:|---:|---:|---|
+| complex_0 | CCO | 2 | -1.10 | 0.55 | 4.21 | results/complex_0/rank2_confidence-1.10.sdf |
+| complex_0 | CCO | 5 | -0.83 | 0.61 | 4.88 | results/complex_0/rank5_confidence-0.83.sdf |
+| complex_1 | CCN(CC)CC | 1 | -0.75 | 0.70 | 5.10 | results/complex_1/rank1_confidence-0.75.sdf |
+
+### 次に抽出
+```bash
+python extract_top_poses.py
+```
+
+### 結果
+- `complex_0` では `Affinity (pK)=4.88` の pose が採用
+- `complex_1` では `Affinity (pK)=5.10` の pose が採用
+
+このように、**1 化合物につき 1 つの代表 pose** が選ばれます。
+
+---
+
+## 🛠 トラブルシューティング
+よくある問題をまとめます。
+
+### 1. `DiffDock` フォルダが見つからない
+エラー例:
+```text
+❌ エラー: カレントディレクトリに 'DiffDock' フォルダが見つかりません。
+```
+
+対処:
+- `DiffDock/` が現在の作業ディレクトリにあるか確認してください
+- スクリプトを実行している場所を確認してください
+
+---
+
+### 2. `filtered_results.csv` が見つからない
+エラー例:
+```text
+❌ エラー: 'filtered_results.csv' が見つかりません。
+```
+
+対処:
+- 先に `run_diffgnina_10k.py` を実行してください
+- カレントディレクトリを確認してください
+
+---
+
+### 3. `top_affinity_poses/` に古いファイルが残る
+このスクリプトは出力フォルダを消さずに再利用します。
+
+対処:
+必要なら実行前に手動で削除してください。
+
+```bash
+rm -rf top_affinity_poses
+python extract_top_poses.py
+```
+
+---
+
+### 4. 再開時に結果が重複する
+`run_diffgnina_10k.py` は `filtered_results.csv` に追記保存します。
+
+対処:
+- `--start_idx` を正しく設定する
+- 必要なら古い `filtered_results.csv` を退避または削除してから再実行する
+
+---
+
+## 💡 運用のコツ
+安定して使うには、次の流れがおすすめです。
+
+1. **まず少数（10〜100 化合物）で試す**
+2. `filtered_results.csv` の件数とスコア分布を見る
+3. 必要に応じて `-mc`, `-cp`, `-dp` を調整
+4. 問題なければ本番スケールで回す
+5. 最後に `extract_top_poses.py` で代表 pose を集める
+
+この順番にすると、いきなり大量計算して「思ったより何も残らない」「逆に残りすぎる」という事故を減らせます。
+
+---
+
+## ✅ まとめ
+このパイプラインは、以下の 2 ステップで使います。
+
+### 1. スクリーニング
+```bash
+python run_diffgnina_10k.py -p target.pdb -l ligands.smi -dp 20 -mc -1.5 -cp 0.4 -w 4 -c 100 -s 0
+```
+
+### 2. 各化合物の代表 pose 抽出
+```bash
+python extract_top_poses.py
+```
+
+### 得られるもの
+- `results/`  
+  DiffDock の生出力
+- `filtered_results.csv`  
+  GNINA 再評価後に条件を満たした pose の一覧
+- `top_affinity_poses/`  
+  各化合物について最良と判断された代表 pose の SDF 集合
+
+この 2 つのスクリプトを組み合わせることで、**多数のリガンド候補から、代表ポーズ付きの有望候補一覧を効率よく得る**ことができます。

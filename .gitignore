@@ -1,0 +1,7 @@
+*.npy
+gnina
+.venv/
+workdir/
+results/
+*.pt
+.so3_*
