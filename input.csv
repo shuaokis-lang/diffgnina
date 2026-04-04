@@ -1,4 +1,0 @@
-complex_name,protein_path,ligand_description,protein_sequence
-complex_0,/home/aokis/diffgnina/8hef_H_delL.pdb,CN1C=C2C=C(C(=CC2=N1)Cl)NC3=NC(=O)N(C(=O)N3CC4=CC(=C(C=C4F)F)F)CC5=NN(C=N5)C,
-complex_1,/home/aokis/diffgnina/8hef_H_delL.pdb,O=C1NC(=O)C(F)=CN1,
-complex_2,/home/aokis/diffgnina/8hef_H_delL.pdb,n1c(c(c(c2c1ccc(c2)Cl)c1ccccc1)C(=O)O)N1CCCCC1,

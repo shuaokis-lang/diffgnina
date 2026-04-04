@@ -1,0 +1,4 @@
+pkill -9 -f inference.py
+pkill -9 -f run_diffgnina
+
+

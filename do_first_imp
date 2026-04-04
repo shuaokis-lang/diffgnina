@@ -1,0 +1,14 @@
+# 1. 解凍
+tar -xzvf diffgnina_portable.tar.gz
+cd diffgnina
+
+# 2. 新しい仮想環境を作成
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 3. ライブラリを一括インストール
+pip install -r requirements.txt
+
+# 4. (重要) gnina バイナリの確認
+# もし圧縮時に gnina を除外していた場合は、再度配置して実行権限を与えてください
+chmod +x gnina
