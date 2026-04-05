@@ -1,7 +1,23 @@
-*.npy
-gnina
+# 仮想環境
 .venv/
-workdir/
+
+# 外部ツール・バイナリファイル
+DiffDock/
+gnina
+
+# 計算結果・ログ・一時ファイル
 results/
-*.pt
-.so3_*
+workdir/
+top_affinity_poses/
+*.csv
+*.log
+
+# 構造ファイル (必要に応じてコメントアウトして除外を解除してください)
+*.pdb
+*.sdf
+
+# キャッシュ等
+__pycache__/
+*.pyc
+*.npy
+.*.npy

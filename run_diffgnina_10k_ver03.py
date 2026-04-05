@@ -71,19 +71,23 @@ def run_diffdock(protein_path, ligand_chunk, start_idx, n_poses, out_dir="result
             os.remove(tmp_yaml_path)
 
 # ==========================================
-# 2. GNINA ワーカー関数
+# 2. GNINA ワーカー関数 (完全修正版)
 # ==========================================
 def _evaluate_single_pose(args):
     sdf, protein_pdb, compound_id, smi, min_conf, min_cnn = args
     filename = os.path.basename(sdf)
     
-    if "confidence" not in filename: 
-        return None
-        
+    # 1. DiffDockのrank1.sdf (confidenceの記述がないファイル) への対応
     try:
-        orig_rank = int(filename.split('rank')[1].split('_')[0])
-        conf = float(filename.split('confidence')[1].replace('.sdf', ''))
-    except: 
+        # "rank"と"_"の間、または"rank"と".sdf"の間の数字を安全に取得
+        orig_rank_str = filename.split('rank')[1].split('_')[0].replace('.sdf', '')
+        orig_rank = int(orig_rank_str)
+        
+        if "confidence" in filename:
+            conf = float(filename.split('confidence')[1].replace('.sdf', ''))
+        else:
+            conf = 0.0  # rank1などconfidenceがない場合は0.0として扱う（足切り回避）
+    except Exception as e: 
         return None
 
     if conf < min_conf:
@@ -92,17 +96,21 @@ def _evaluate_single_pose(args):
     cmd = ["./gnina", "-r", protein_pdb, "-l", sdf, "--score_only"]
     proc = subprocess.run(cmd, capture_output=True, text=True)
     
-    if proc.returncode != 0:
-        return None
+    # 2. returncodeの厳格なチェックを削除！
+    # OpenBabelの警告でエラー終了扱いになっても、スコアが取れていればOKとする
     
-    cnn_pose_score = 0.0
-    cnn_affinity = 0.0
-    vina_score = 0.0
+    cnn_pose_score = None
+    cnn_affinity = None
+    vina_score = None
     
     for line in proc.stdout.splitlines():
         if "CNNscore:" in line: cnn_pose_score = float(line.split()[1])
         elif "CNNaffinity:" in line: cnn_affinity = float(line.split()[1])
         elif "Affinity:" in line: vina_score = float(line.split()[1])
+
+    # 警告ではなく本当にエラーで落ちて、スコアが1つも取れなかった場合は除外
+    if cnn_pose_score is None:
+        return None
 
     if cnn_pose_score < min_cnn:
         return None
@@ -119,16 +127,23 @@ def _evaluate_single_pose(args):
     }
 
 # ==========================================
-# 3. GNINA オーケストレーション (結果の逐次保存)
+# 3. GNINA オーケストレーション (フォルダ探索修正版)
 # ==========================================
 def evaluate_chunk_results(protein_pdb, ligand_chunk, start_idx, min_conf, min_cnn, num_workers, out_dir="results"):
     print(f"\n⚖️ チャンク結果を評価中 (Index {start_idx} 〜)...")
     
     tasks = []
     for lig_id, smi in ligand_chunk:
-        # IDがフォルダ名になっている前提で探索
-        complex_dir = os.path.join(out_dir, lig_id)
-        if not os.path.exists(complex_dir):
+        complex_dir = None
+        # 修正ポイント: DiffDock特有の "index0_lig_id" のようなフォルダ名に対応する
+        if os.path.exists(out_dir):
+            for dirname in os.listdir(out_dir):
+                if dirname == lig_id or dirname.endswith(f"_{lig_id}"):
+                    complex_dir = os.path.join(out_dir, dirname)
+                    break
+        
+        if complex_dir is None:
+            print(f"⚠️ 警告: DiffDockの出力フォルダ内に {lig_id} の結果が見つかりません。")
             continue
             
         sdf_files = glob.glob(os.path.join(complex_dir, "rank*.sdf"))
@@ -138,7 +153,7 @@ def evaluate_chunk_results(protein_pdb, ligand_chunk, start_idx, min_conf, min_c
     results = []
     actual_workers = min(num_workers, len(tasks)) if tasks else 1
     
-    if actual_workers > 0:
+    if actual_workers > 0 and len(tasks) > 0:
         with concurrent.futures.ProcessPoolExecutor(max_workers=actual_workers) as executor:
             for res in executor.map(_evaluate_single_pose, tasks):
                 if res is not None:
@@ -147,7 +162,7 @@ def evaluate_chunk_results(protein_pdb, ligand_chunk, start_idx, min_conf, min_c
     df = pd.DataFrame(results)
     
     if df.empty:
-        print(f"⚠️ このチャンク (Index {start_idx} 〜) ではフィルタを通過したポーズはありませんでした。")
+        print(f"⚠️ このチャンク (Index {start_idx} 〜) では閾値(Conf>={min_conf}, CNN>={min_cnn})を通過したポーズはありませんでした。")
         return
 
     # CNN Pose Score が高い順にソート
@@ -182,8 +197,7 @@ if __name__ == "__main__":
         print("❌ エラー: 入力ファイルが見つかりません。")
         sys.exit(1)
 
-    # ======== ここから修正 ========
-    # ファイルから ID と SMILES を読み込む
+    # ファイルから ID と SMILES を読み込む (タブ・スペース両対応)
     ligand_list = []
     with open(args.l, "r") as f:
         for line in f:
@@ -199,7 +213,6 @@ if __name__ == "__main__":
                 lig_id = f"complex_{len(ligand_list)}"
                 smi = parts[0]
             ligand_list.append((lig_id, smi))
-    # ======== ここまで修正 ========
 
     total_ligands = len(ligand_list)
     if total_ligands == 0:
@@ -229,3 +242,6 @@ if __name__ == "__main__":
 
     elapsed_time = time.time() - start_time
     print(f"\n🎉🎉 すべての処理が完了しました！ (総所要時間: {elapsed_time/3600:.2f} 時間)")
+
+
+
