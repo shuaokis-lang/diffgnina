@@ -16,13 +16,11 @@ import time
 def run_diffdock(protein_path, ligand_chunk, start_idx, n_poses, out_dir="results"):
     print(f"\n🤖 DiffDock 実行中 (リガンド Index {start_idx} 〜 {start_idx + len(ligand_chunk) - 1}, 各 {n_poses} ポーズ)...")
     
-    # 大規模実行では毎回resultsを削除しない（続きから保存するため）
     os.makedirs(out_dir, exist_ok=True)
 
     input_csv = "input.csv"
     with open(input_csv, "w") as f:
         f.write("complex_name,protein_path,ligand_description,protein_sequence\n")
-        # ligand_chunk には (ID, SMILES) のタプルが入る
         for lig_id, smi in ligand_chunk:
             f.write(f"{lig_id},{os.path.abspath(protein_path)},{smi},\n")
 
@@ -61,8 +59,7 @@ def run_diffdock(protein_path, ligand_chunk, start_idx, n_poses, out_dir="result
             print(f"❌ DiffDockの実行中にエラーが発生しました (Index {start_idx}付近)。")
             sys.exit(1)
     except KeyboardInterrupt:
-        # Ctrl+Cで止められた時に、子プロセスのDiffDockを確実にキルする
-        print("\n🛑 ユーザーによって処理が中断されました。バックグラウンドのDiffDockを強制終了します...")
+        print("\n🛑 ユーザーによって処理が中断されました。強制終了します...")
         process.kill()
         process.wait()
         sys.exit(1)
@@ -71,33 +68,43 @@ def run_diffdock(protein_path, ligand_chunk, start_idx, n_poses, out_dir="result
             os.remove(tmp_yaml_path)
 
 # ==========================================
-# 2. GNINA ワーカー関数 (完全修正版)
+# 2. GNINA ワーカー関数 (Minimize 組み込み版)
 # ==========================================
 def _evaluate_single_pose(args):
     sdf, protein_pdb, compound_id, smi, min_conf, min_cnn = args
     filename = os.path.basename(sdf)
     
-    # 1. DiffDockのrank1.sdf (confidenceの記述がないファイル) への対応
     try:
-        # "rank"と"_"の間、または"rank"と".sdf"の間の数字を安全に取得
+        # rank情報の抽出
         orig_rank_str = filename.split('rank')[1].split('_')[0].replace('.sdf', '')
         orig_rank = int(orig_rank_str)
         
         if "confidence" in filename:
             conf = float(filename.split('confidence')[1].replace('.sdf', ''))
         else:
-            conf = 0.0  # rank1などconfidenceがない場合は0.0として扱う（足切り回避）
-    except Exception as e: 
+            conf = 0.0  # rank1等でconfidence表記がない場合はパスさせる
+    except Exception: 
         return None
 
+    # DiffDockの信頼度スコアで事前フィルタリング
     if conf < min_conf:
         return None
 
-    cmd = ["./gnina", "-r", protein_pdb, "-l", sdf, "--score_only"]
-    proc = subprocess.run(cmd, capture_output=True, text=True)
+    # GNINA実行コマンド
+    # --minimize: 物理的な歪みをとるための構造最適化
+    # --autobox_ligand: 入力リガンドの周りで最適化を行う
+    # --no_gpu: 並列実行時のVRAM枯渇を避けるためCPUを使用
+    cmd = [
+        "./gnina", 
+        "-r", protein_pdb, 
+        "-l", sdf, 
+        "--score_only", 
+        "--minimize", 
+        "--autobox_ligand", sdf,
+        "--no_gpu"
+    ]
     
-    # 2. returncodeの厳格なチェックを削除！
-    # OpenBabelの警告でエラー終了扱いになっても、スコアが取れていればOKとする
+    proc = subprocess.run(cmd, capture_output=True, text=True)
     
     cnn_pose_score = None
     cnn_affinity = None
@@ -108,11 +115,8 @@ def _evaluate_single_pose(args):
         elif "CNNaffinity:" in line: cnn_affinity = float(line.split()[1])
         elif "Affinity:" in line: vina_score = float(line.split()[1])
 
-    # 警告ではなく本当にエラーで落ちて、スコアが1つも取れなかった場合は除外
-    if cnn_pose_score is None:
-        return None
-
-    if cnn_pose_score < min_cnn:
+    # スコアが取得できない場合や、CNNスコアが閾値未満の場合は除外
+    if cnn_pose_score is None or cnn_pose_score < min_cnn:
         return None
 
     return {
@@ -127,15 +131,14 @@ def _evaluate_single_pose(args):
     }
 
 # ==========================================
-# 3. GNINA オーケストレーション (フォルダ探索修正版)
+# 3. GNINA オーケストレーション
 # ==========================================
 def evaluate_chunk_results(protein_pdb, ligand_chunk, start_idx, min_conf, min_cnn, num_workers, out_dir="results"):
-    print(f"\n⚖️ チャンク結果を評価中 (Index {start_idx} 〜)...")
+    print(f"\n⚖️ 評価・最適化中 (Index {start_idx} 〜, 並列数: {num_workers})...")
     
     tasks = []
     for lig_id, smi in ligand_chunk:
         complex_dir = None
-        # 修正ポイント: DiffDock特有の "index0_lig_id" のようなフォルダ名に対応する
         if os.path.exists(out_dir):
             for dirname in os.listdir(out_dir):
                 if dirname == lig_id or dirname.endswith(f"_{lig_id}"):
@@ -143,7 +146,6 @@ def evaluate_chunk_results(protein_pdb, ligand_chunk, start_idx, min_conf, min_c
                     break
         
         if complex_dir is None:
-            print(f"⚠️ 警告: DiffDockの出力フォルダ内に {lig_id} の結果が見つかりません。")
             continue
             
         sdf_files = glob.glob(os.path.join(complex_dir, "rank*.sdf"))
@@ -151,94 +153,64 @@ def evaluate_chunk_results(protein_pdb, ligand_chunk, start_idx, min_conf, min_c
             tasks.append((sdf, protein_pdb, lig_id, smi, min_conf, min_cnn))
 
     results = []
-    actual_workers = min(num_workers, len(tasks)) if tasks else 1
-    
-    if actual_workers > 0 and len(tasks) > 0:
+    if tasks:
+        actual_workers = min(num_workers, len(tasks))
         with concurrent.futures.ProcessPoolExecutor(max_workers=actual_workers) as executor:
             for res in executor.map(_evaluate_single_pose, tasks):
                 if res is not None:
                     results.append(res)
 
-    df = pd.DataFrame(results)
-    
-    if df.empty:
-        print(f"⚠️ このチャンク (Index {start_idx} 〜) では閾値(Conf>={min_conf}, CNN>={min_cnn})を通過したポーズはありませんでした。")
+    if not results:
+        print(f"⚠️ チャンク (Index {start_idx}) で条件を満たすポーズはありませんでした。")
         return
 
-    # CNN Pose Score が高い順にソート
+    df = pd.DataFrame(results)
     df_sorted = df.sort_values(by=["Compound ID", "CNN Pose Score"], ascending=[True, False]).reset_index(drop=True)
     
-    # CSVファイルへの「追記」保存
     output_csv = "filtered_results.csv"
-    write_header = not os.path.exists(output_csv) # ファイルがない初回だけヘッダーを書く
-    
+    write_header = not os.path.exists(output_csv)
     df_sorted.to_csv(output_csv, mode='a', header=write_header, index=False)
-    print(f"✅ {len(df_sorted)} 個のポーズを '{output_csv}' に追記保存しました。")
+    print(f"✅ {len(df_sorted)} 個の最適化済みポーズを '{output_csv}' に追記しました。")
 
 # ==========================================
 # メイン処理
 # ==========================================
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="DiffDock + GNINA 10k Large Scale Pipeline")
-    parser.add_argument("-p", required=True, help="標的タンパク質のPDBファイルパス")
-    parser.add_argument("-l", required=True, help="化合物IDとSMILESが並んだテキストファイルパス (.smi)")
-    parser.add_argument("-dp", type=int, default=20, help="DiffDockでの1リガンドあたりのポーズ生成数 (デフォルト: 20)")
-    parser.add_argument("-mc", type=float, default=-2.0, help="min_model_confの閾値 (デフォルト: -2.0)")
-    parser.add_argument("-cp", type=float, default=0.3, help="min_cnn_pose_scoreの閾値 (デフォルト: 0.3)")
-    parser.add_argument("-w", "--workers", type=int, default=1, help="GNINA並列実行時のワーカー数 (デフォルト: 1)")
-    
-    # 大規模用の追加引数
-    parser.add_argument("-c", "--chunk_size", type=int, default=100, help="1度に処理するリガンドの数 (デフォルト: 100)")
-    parser.add_argument("-s", "--start_idx", type=int, default=0, help="処理を開始するリガンドのインデックス(0始まり)。再開時に使用 (デフォルト: 0)")
+    parser = argparse.ArgumentParser(description="DiffDock + GNINA (with Minimize) Large Scale Pipeline")
+    parser.add_argument("-p", required=True, help="標的タンパク質のPDBファイル")
+    parser.add_argument("-l", required=True, help="化合物リスト (.smi)")
+    parser.add_argument("-dp", type=int, default=20, help="生成ポーズ数")
+    parser.add_argument("-mc", type=float, default=-2.0, help="Min DiffDock Conf")
+    parser.add_argument("-cp", type=float, default=0.3, help="Min GNINA CNN Score")
+    parser.add_argument("-w", "--workers", type=int, default=4, help="GNINA並列数")
+    parser.add_argument("-c", "--chunk_size", type=int, default=100, help="チャンクサイズ")
+    parser.add_argument("-s", "--start_idx", type=int, default=0, help="開始インデックス")
     
     args = parser.parse_args()
 
-    if not os.path.exists(args.p) or not os.path.exists(args.l):
-        print("❌ エラー: 入力ファイルが見つかりません。")
-        sys.exit(1)
-
-    # ファイルから ID と SMILES を読み込む (タブ・スペース両対応)
+    # SMILES読み込み
     ligand_list = []
     with open(args.l, "r") as f:
         for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            parts = line.split() # スペースやタブで分割
+            parts = line.strip().split()
             if len(parts) >= 2:
-                # ID SMILES の順になっていることを想定
-                lig_id, smi = parts[0], parts[1]
-            else:
-                # 万が一IDがない行があった場合のフォールバック
-                lig_id = f"complex_{len(ligand_list)}"
-                smi = parts[0]
-            ligand_list.append((lig_id, smi))
+                ligand_list.append((parts[0], parts[1]))
+            elif len(parts) == 1:
+                ligand_list.append((f"lig_{len(ligand_list)}", parts[0]))
 
-    total_ligands = len(ligand_list)
-    if total_ligands == 0:
-        print("❌ エラー: リガンドリストが空です。")
-        sys.exit(1)
-
-    print(f"🚀 大規模スクリーニングを開始します (全 {total_ligands} リガンド)")
-    print(f"📦 チャンクサイズ: {args.chunk_size} / 開始インデックス: {args.start_idx}")
-    print("=" * 60)
-
+    total = len(ligand_list)
+    print(f"🚀 スクリーニング開始: 全 {total} リガンド / 構造最適化: ON")
     start_time = time.time()
 
-    # チャンクごとにループ処理
-    for chunk_start in range(args.start_idx, total_ligands, args.chunk_size):
-        chunk_end = min(chunk_start + args.chunk_size, total_ligands)
+    for chunk_start in range(args.start_idx, total, args.chunk_size):
+        chunk_end = min(chunk_start + args.chunk_size, total)
         chunk_ligands = ligand_list[chunk_start:chunk_end]
         
-        print(f"\n" + "="*60)
-        print(f"🔄 チャンク処理開始: Index {chunk_start} から {chunk_end - 1} ({len(chunk_ligands)} 個)")
-        print("="*60)
+        print(f"\n" + "="*50)
+        print(f"📦 CHUNK: {chunk_start} - {chunk_end-1}")
+        print("="*50)
 
-        # 1. DiffDock (チャンク分だけ)
         run_diffdock(args.p, chunk_ligands, chunk_start, args.dp, out_dir="results")
-        
-        # 2. GNINA評価とCSV追記 (チャンク分だけ)
         evaluate_chunk_results(args.p, chunk_ligands, chunk_start, args.mc, args.cp, args.workers, out_dir="results")
 
-    elapsed_time = time.time() - start_time
-    print(f"\n🎉🎉 すべての処理が完了しました！ (総所要時間: {elapsed_time/3600:.2f} 時間)")
+    print(f"\n🎉 完了! 総時間: {(time.time()-start_time)/3600:.2f}h")
