@@ -1,0 +1,574 @@
+
+🏆 各化合物の GNINA Affinity (pK) トップポーズ
+==========================================================================================
+|   Compound ID | SMILES                                                                       |   Orig Rank |   Affinity (pK) |   CNN Pose Score |
+|--------------:|:-----------------------------------------------------------------------------|------------:|----------------:|-----------------:|
+|          01_1 | CN1C=C2C=C(C(=CC2=N1)Cl)NC3=NC(=O)N(C(=O)N3CC4=CC(=C(C=C4F)F)F)CC5=NN(C=N5)C |           4 |          7.1954 |           0.5340 |
+|   5101276_1_7 | CCOc1ccc(OCC)c([C@H]2[C@H](C(=O)c3ccccc3)N3C=Cc4ccccc4[C@H]3C2(C#N)C#N)c1    |           1 |          6.3294 |           0.4031 |
+|   5101276_1_8 | CCOc1ccc(OCC)c([C@@H]2[C@H](C(=O)c3ccccc3)N3C=Cc4ccccc4[C@H]3C2(C#N)C#N)c1   |           2 |          6.1684 |           0.4841 |
+|   5101276_1_5 | CCOc1ccc(OCC)c([C@H]2[C@@H](C(=O)c3ccccc3)N3C=Cc4ccccc4[C@H]3C2(C#N)C#N)c1   |           2 |          6.1674 |           0.4577 |
+|     5102325_1 | CCc1c(C)nn2c1n1nc(C)c(CC)c1n1nc(C)c(CC)c21                                   |           6 |          6.1233 |           0.4529 |
+|   5101276_1_2 | CCOc1ccc(OCC)c([C@@H]2[C@@H](C(=O)c3ccccc3)N3C=Cc4ccccc4[C@@H]3C2(C#N)C#N)c1 |           3 |          6.1220 |           0.4054 |
+|   5101276_1_6 | CCOc1ccc(OCC)c([C@@H]2[C@@H](C(=O)c3ccccc3)N3C=Cc4ccccc4[C@H]3C2(C#N)C#N)c1  |           4 |          6.0132 |           0.3753 |
+|   5101276_1_1 | CCOc1ccc(OCC)c([C@H]2[C@@H](C(=O)c3ccccc3)N3C=Cc4ccccc4[C@@H]3C2(C#N)C#N)c1  |           1 |          5.9874 |           0.3801 |
+|   5101276_1_4 | CCOc1ccc(OCC)c([C@@H]2[C@H](C(=O)c3ccccc3)N3C=Cc4ccccc4[C@@H]3C2(C#N)C#N)c1  |           1 |          5.9859 |           0.4739 |
+|   5101271_1_1 | CCOc1ccc(OCC)c([C@H]2[C@@H]3CCCC=C3C(C#N)=C(N)C2(C#N)C#N)c1                  |           2 |          5.9733 |           0.5059 |
+|   5101271_1_2 | CCOc1ccc(OCC)c([C@@H]2[C@@H]3CCCC=C3C(C#N)=C(N)C2(C#N)C#N)c1                 |           4 |          5.9595 |           0.4215 |
+|     5102816_1 | c1ccc(Oc2nc(Oc3ccccc3)nc(Oc3ccccc3)n2)cc1                                    |           3 |          5.9502 |           0.4110 |
+|   5104426_1_1 | COc1cccc([C@H](C2=C(O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)c1O                 |           3 |          5.9423 |           0.5709 |
+|     5101024_1 | c1ccc(N(c2ccccc2)c2nc(N3CCOCC3)nc(N3CCOCC3)n2)cc1                            |           3 |          5.9382 |           0.4370 |
+|     5101027_1 | CC(C)Nc1nc(N2CCOCC2)nc(N(c2ccccc2)c2ccccc2)n1                                |           2 |          5.9167 |           0.4303 |
+|   5105106_1_2 | CC1(C)CC(=O)C([C@H](C2=C(O)CC(C)(C)CC2=O)c2ccc(Cl)cc2)C(=O)C1                |           4 |          5.9117 |           0.5681 |
+|   5101276_1_3 | CCOc1ccc(OCC)c([C@H]2[C@H](C(=O)c3ccccc3)N3C=Cc4ccccc4[C@@H]3C2(C#N)C#N)c1   |           1 |          5.9011 |           0.3871 |
+|   5105106_1_1 | CC1(C)CC(=O)C([C@@H](C2=C(O)CC(C)(C)CC2=O)c2ccc(Cl)cc2)C(=O)C1               |           4 |          5.8756 |           0.5654 |
+|   5104426_1_2 | COc1cccc([C@@H](C2=C(O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)c1O                |           2 |          5.8264 |           0.5549 |
+|     5101019_1 | CN(C)c1nc(N2CCOCC2)nc(N(c2ccccc2)c2ccccc2)n1                                 |           2 |          5.7946 |           0.4574 |
+|     5101013_1 | CCN(CC)c1nc(Nc2ccc(OC)cc2)nc(Nc2ccc(OC)cc2)n1                                |           1 |          5.7782 |           0.4082 |
+|     5101474_1 | Clc1nc(N2CCOCC2)nc(N(c2ccccc2)c2ccccc2)n1                                    |           3 |          5.7756 |           0.4511 |
+|     5101479_1 | COc1ccc(Nc2nc(Cl)nc(Nc3ccc(C)cc3)n2)cc1                                      |           5 |          5.7569 |           0.4122 |
+|   5104477_1_1 | Cc1ccc([C@@H](C2=C(O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)o1                   |           1 |          5.7427 |           0.5148 |
+|   5101270_1_4 | CCOc1ccc(OCC)c([C@@H]2[C@H]3CCC=C3C(C#N)=C(N)C2(C#N)C#N)c1                   |           2 |          5.7307 |           0.3809 |
+|   5101271_1_4 | CCOc1ccc(OCC)c([C@@H]2[C@H]3CCCC=C3C(C#N)=C(N)C2(C#N)C#N)c1                  |           2 |          5.7016 |           0.3446 |
+|     5101476_1 | Cc1ccc(Nc2nc(Cl)nc(Nc3ccc(C)cc3)n2)cc1                                       |           6 |          5.7013 |           0.4185 |
+|     5100928_1 | Cc1ccc(S(=O)(=O)N(C)c2ccccc2N(C)S(=O)(=O)c2ccc(C)cc2)cc1                     |           1 |          5.6875 |           0.4762 |
+|   5101270_1_3 | CCOc1ccc(OCC)c([C@H]2[C@H]3CCC=C3C(C#N)=C(N)C2(C#N)C#N)c1                    |           1 |          5.6847 |           0.3964 |
+|     5101468_1 | Cc1ccc(Nc2nc(Cl)nc(NCc3ccccc3)n2)cc1                                         |           3 |          5.6815 |           0.5118 |
+|   5101270_1_2 | CCOc1ccc(OCC)c([C@@H]2[C@@H]3CCC=C3C(C#N)=C(N)C2(C#N)C#N)c1                  |           1 |          5.6796 |           0.4181 |
+|     5103483_1 | O=C(CC1(c2ccccc2)C(=O)c2ccccc2C1=O)NC1CCCCC1                                 |           1 |          5.6687 |           0.4235 |
+|   5101274_1_1 | CCOc1ccc(OCC)c([C@H]2[C@@H]3CCCCC=C3C(C#N)=C(N)C2(C#N)C#N)c1                 |           3 |          5.6617 |           0.3601 |
+|   5104682_1_2 | CC1(C)CC(=O)C([C@H](C2=C(O)CC(C)(C)CC2=O)c2ccccc2)C(=O)C1                    |           4 |          5.6494 |           0.4985 |
+|   5102870_1_2 | CCC(=O)C[C@H](Sc1cc(=O)oc2ccccc12)c1ccccc1                                   |           1 |          5.6330 |           0.5399 |
+|     5102726_1 | C1CCN(c2nc(N3CCCCC3)nc(N3CCCCC3)n2)CC1                                       |           2 |          5.5753 |           0.4259 |
+|   5101270_1_1 | CCOc1ccc(OCC)c([C@H]2[C@@H]3CCC=C3C(C#N)=C(N)C2(C#N)C#N)c1                   |           1 |          5.5629 |           0.3393 |
+|   5101410_1_2 | CCOC(=O)C1=C(N)OC2=C(C(=O)CC(C)(C)C2)[C@H]1c1ccc(C)cc1C                      |           1 |          5.5493 |           0.5520 |
+|     5104419_1 | O=c1c2cc3c(=O)n(-c4ccccn4)c(=O)c3cc2c(=O)n1-c1ccccn1                         |           3 |          5.5469 |           0.3352 |
+|     5103388_1 | Cc1ccccc1NC(=O)CC1(c2ccccc2)C(=O)c2ccccc2C1=O                                |           2 |          5.5451 |           0.4585 |
+|   5104477_1_2 | Cc1ccc([C@H](C2=C(O)CC(C)(C)CC2=O)C2C(=O)CC(C)(C)CC2=O)o1                    |           1 |          5.5380 |           0.5427 |
+|     5100018_1 | CCOC(=O)c1c(C)n(-c2ccccc2)c2ccc(NS(=O)(=O)c3ccccc3)cc12                      |           1 |          5.5353 |           0.3140 |
+|     5101032_1 | CNc1nc(N2CCOCC2)nc(N(c2ccccc2)c2ccccc2)n1                                    |           1 |          5.5339 |           0.4066 |
+|   5104682_1_1 | CC1(C)CC(=O)C([C@@H](C2=C(O)CC(C)(C)CC2=O)c2ccccc2)C(=O)C1                   |           8 |          5.5298 |           0.5823 |
+|   5104971_1_4 | COc1ccc(NC(=O)[C@@H]2CC[C@@](C)(C([O])=O)C2(C)C)cc1                          |           1 |          5.5128 |           0.7294 |
+|   5101306_1_1 | CCOC(=O)C1=C(C)OC(N)=C(C#N)[C@@H]1c1c(C)cc(C)cc1C                            |           3 |          5.5056 |           0.5142 |
+|   5101410_1_1 | CCOC(=O)C1=C(N)OC2=C(C(=O)CC(C)(C)C2)[C@@H]1c1ccc(C)cc1C                     |           1 |          5.5045 |           0.5007 |
+|     5102887_1 | O=C(c1cc2ccccc2oc1=O)N(c1ccccc1)c1ccccc1                                     |           5 |          5.4788 |           0.4706 |
+|          03_1 | n1c(c(c(c2c1ccc(c2)Cl)c1ccccc1)C(=O)O)N1CCCCC1                               |           5 |          5.4678 |           0.3997 |
+|   5103028_1_3 | CC[C@H](O)C[C@H](c1ccccc1)c1c(O)c2ccccc2oc1=O                                |           1 |          5.4464 |           0.4205 |
+|     5101452_1 | Clc1nc(Nc2ccccc2)nc(Nc2ccccc2)n1                                             |           2 |          5.4318 |           0.4109 |
+|     5101472_1 | COc1ccccc1Nc1nc(Cl)nc(NC(C)(C)C)n1                                           |           1 |          5.4278 |           0.4501 |
+|     5101487_1 | c1ccc(Nc2nc(N3CCCCC3)nc(N3CCCCC3)n2)cc1                                      |           2 |          5.4029 |           0.4193 |
+|     5103493_1 | CCOc1ccc(NC(=O)CC2(c3ccc(OC)cc3)C(=O)c3ccccc3C2=O)cc1                        |           2 |          5.3944 |           0.3860 |
+|     5100724_1 | S=c1n(C[NH+]2CCCCC2)c2ccccc2n1C[NH+]1CCCCC1                                  |           3 |          5.3817 |           0.3648 |
+|     5101465_1 | Cc1ccc(Nc2nc(Cl)nc(NC(C)(C)C)n2)cc1                                          |           2 |          5.3749 |           0.4505 |
+|   5101321_1_1 | CCOC1=C(C)OC(N)=C(C#N)[C@H]1c1ccc(OC)cc1                                     |           1 |          5.3727 |           0.5665 |
+|   5103028_1_4 | CC[C@H](O)C[C@@H](c1ccccc1)c1c(O)c2ccccc2oc1=O                               |           1 |          5.3701 |           0.4397 |
+|     5104945_1 | CC(=O)Nc1ccc(NC(=O)COc2ccc(Cl)cc2Cl)cc1                                      |           3 |          5.3519 |           0.6359 |
+|   5103028_1_1 | CC[C@@H](O)C[C@H](c1ccccc1)c1c(O)c2ccccc2oc1=O                               |           1 |          5.3491 |           0.4638 |
+|     5101470_1 | Cc1ccccc1Nc1nc(Cl)nc(N2CCOCC2)n1                                             |           1 |          5.3172 |           0.4259 |
+|     5104452_1 | O=C1c2ccccc2C(=O)N1c1cccc(N2C(=O)c3ccccc3C2=O)c1                             |           2 |          5.3159 |           0.6075 |
+|     5104019_1 | CC(C)(C)c1ccc(S(=O)(=O)CCc2ccccn2)cc1                                        |           4 |          5.3145 |           0.5273 |
+|   5104977_1_2 | C[C@H](NC(=O)[C@@H]1CC[C@](C)(C([O])=O)C1(C)C)c1ccccc1                       |           3 |          5.3027 |           0.4375 |
+|     5105082_1 | O=C(Nc1ccc(Cc2ccc(NC(=O)N3CCCCC3)cc2)cc1)N1CCCCC1                            |           1 |          5.3027 |           0.3488 |
+|     5103411_1 | O=C(CC1(c2ccccc2)C(=O)c2ccccc2C1=O)Nc1ccccc1                                 |           2 |          5.2918 |           0.4316 |
+|   5100303_1_1 | CC1=C(C)C[C@H](C(=O)c2ccccc2)[C@@H](C([O])=O)C1                              |           4 |          5.2846 |           0.5100 |
+|     5103281_1 | CC(C)(C)Nc1nc(Cl)nc(NCc2ccccc2)n1                                            |           2 |          5.2661 |           0.3883 |
+|     5104961_1 | O=C(COc1ccc(Cl)cc1Cl)Nc1ccccc1Cl                                             |           1 |          5.2543 |           0.5085 |
+|     5101457_1 | c1ccc(CNc2nc(N3CCOCC3)nc(N3CCOCC3)n2)cc1                                     |           4 |          5.2315 |           0.3811 |
+|     5101458_1 | Nc1nc(N2CCCCC2)nc(N2CCCCC2)n1                                                |           1 |          5.2302 |           0.4094 |
+|   5101357_1_2 | CCOC(=O)C1=C(C)OC(N)=C(C#N)[C@H]1c1ccc(C)cc1C                                |           1 |          5.2132 |           0.4003 |
+|   5104971_1_3 | COc1ccc(NC(=O)[C@H]2CC[C@@](C)(C([O])=O)C2(C)C)cc1                           |           1 |          5.1935 |           0.4979 |
+|     5102882_1 | O=C(Nc1ccccc1Br)c1cc2ccccc2oc1=O                                             |           5 |          5.1879 |           0.4187 |
+|   5105138_1_2 | C[C@@H](C1=C(O)CC(C)(C)CC1=O)C1C(=O)CC(C)(C)CC1=O                            |           2 |          5.1871 |           0.5437 |
+|     5102338_1 | Cc1ccc(S(=O)(=O)Nc2cc(C)nn2-c2ccccc2)cc1                                     |           1 |          5.1773 |           0.4782 |
+|     5100163_1 | COc1ccc2c(c1)c(C)c(C)n2CCc1ccc(C)nc1                                         |           1 |          5.1765 |           0.4747 |
+|     5103412_1 | CCOc1ccc(C2(CC(=O)Nc3ccccc3)C(=O)c3ccccc3C2=O)cc1OC                          |           1 |          5.1647 |           0.3385 |
+|   5105101_1_2 | CC1(C)CC(=O)C([C@@H](CO)C2=C(O)CC(C)(C)CC2=O)C(=O)C1                         |           4 |          5.1646 |           0.5427 |
+|     5104958_1 | N#Cc1ccccc1NC(=O)COc1ccc(Cl)cc1Cl                                            |           1 |          5.1554 |           0.4486 |
+|   5104970_1_1 | Cc1ccc(NC(=O)[C@H]2CC[C@](C)(C([O])=O)C2(C)C)cc1                             |           3 |          5.1531 |           0.5613 |
+|   5101306_1_2 | CCOC(=O)C1=C(C)OC(N)=C(C#N)[C@H]1c1c(C)cc(C)cc1C                             |           2 |          5.1505 |           0.3600 |
+|   5104971_1_1 | COc1ccc(NC(=O)[C@H]2CC[C@](C)(C([O])=O)C2(C)C)cc1                            |           2 |          5.1485 |           0.4159 |
+|     5104434_1 | CC1(C)CC(=O)C(CC2=C(O)CC(C)(C)CC2=O)C(=O)C1                                  |           2 |          5.1435 |           0.5889 |
+|     5101485_1 | CC(C)(C)Nc1nc(NC(C)(C)C)nc(N2CCCCC2)n1                                       |           1 |          5.1392 |           0.4199 |
+|     5101484_1 | CC(C)(C)Nc1nc(N2CCOCC2)nc(N2CCOCC2)n1                                        |           1 |          5.1367 |           0.4829 |
+|   5104977_1_6 | C[C@@H](NC(=O)[C@@H]1CC[C@](C)(C([O])=O)C1(C)C)c1ccccc1                      |           2 |          5.1330 |           0.4981 |
+|     5104014_1 | Clc1ccc(Cl)c(SCCc2ccccn2)c1                                                  |           5 |          5.1322 |           0.4019 |
+|     5101455_1 | CC(C)(C)Nc1nc(NC(C)(C)C)nc(N2CCOCC2)n1                                       |           6 |          5.1307 |           0.3812 |
+|     5104826_1 | O=C(OCC1c2ccccc2-c2ccccc21)ON1C(=O)CCC1=O                                    |           1 |          5.1123 |           0.4753 |
+|   5105138_1_1 | C[C@H](C1=C(O)CC(C)(C)CC1=O)C1C(=O)CC(C)(C)CC1=O                             |           7 |          5.1093 |           0.5443 |
+|   5104970_1_4 | Cc1ccc(NC(=O)[C@@H]2CC[C@@](C)(C([O])=O)C2(C)C)cc1                           |           1 |          5.0908 |           0.4806 |
+|   5105101_1_1 | CC1(C)CC(=O)C([C@H](CO)C2=C(O)CC(C)(C)CC2=O)C(=O)C1                          |           7 |          5.0855 |           0.4574 |
+|   5104977_1_7 | C[C@@H](NC(=O)[C@H]1CC[C@@](C)(C([O])=O)C1(C)C)c1ccccc1                      |           1 |          5.0777 |           0.4170 |
+|     5104029_1 | Cc1ccc(CCSc2ccc(Br)cc2)cn1                                                   |           3 |          5.0676 |           0.6388 |
+|     5105108_1 | [O]C(=O)c1ccccc1C(=O)Nc1ccc(NC(=O)c2ccccc2C([O])=O)cc1                       |           2 |          5.0599 |           0.3912 |
+|     5102983_1 | O=c1oc2ccccc2c(O)c1Sc1ccccc1                                                 |           6 |          5.0476 |           0.4764 |
+|   5100303_1_2 | CC1=C(C)C[C@@H](C(=O)c2ccccc2)[C@@H](C([O])=O)C1                             |           8 |          5.0420 |           0.6210 |
+|   5101357_1_1 | CCOC(=O)C1=C(C)OC(N)=C(C#N)[C@@H]1c1ccc(C)cc1C                               |           1 |          5.0409 |           0.4524 |
+|     5104040_1 | Cc1ccnc(NS(=O)(=O)c2ccc(C(C)(C)C)cc2)c1                                      |           4 |          5.0400 |           0.4171 |
+|     5101471_1 | Cc1ccccc1Nc1nc(Cl)nc(NC(C)(C)C)n1                                            |           2 |          5.0322 |           0.4205 |
+|   5104977_1_8 | C[C@@H](NC(=O)[C@@H]1CC[C@@](C)(C([O])=O)C1(C)C)c1ccccc1                     |           2 |          5.0298 |           0.4936 |
+|   5103264_1_2 | CCOc1ccc([C@@H](Nc2ccccc2)[P@]2(=S)O[C@@H](C)[C@@H](C)O2)cc1                 |           1 |          5.0250 |           0.4241 |
+|   5100481_1_2 | CC(C)[C@H](Nc1ccc(Br)cn1)n1cncn1                                             |           3 |          5.0228 |           0.4369 |
+|   5103264_1_7 | CCOc1ccc([C@H](Nc2ccccc2)P2(=S)O[C@H](C)[C@@H](C)O2)cc1                      |           1 |          5.0191 |           0.4680 |
+|     5102883_1 | O=C(Nc1cccc(Br)c1)c1cc2ccccc2oc1=O                                           |           5 |          5.0160 |           0.5703 |
+|   5103264_1_3 | CCOc1ccc([C@@H](Nc2ccccc2)P2(=S)O[C@H](C)[C@@H](C)O2)cc1                     |           1 |          5.0134 |           0.3831 |
+|   5100060_1_1 | COC(=O)[C@H]1CC=CC[C@@H]1C(=O)c1c[nH]c2ccccc12                               |           2 |          5.0117 |           0.4513 |
+|     5102884_1 | Cc1cccc(NC(=O)c2cc3ccccc3oc2=O)c1                                            |           3 |          5.0096 |           0.4994 |
+|   5104956_1_2 | C[C@@H](NC(=O)COc1ccc(Cl)cc1Cl)c1ccccc1                                      |           2 |          5.0048 |           0.5740 |
+|   5100303_1_3 | CC1=C(C)C[C@@H](C([O])=O)[C@@H](C(=O)c2ccccc2)C1                             |           4 |          4.9987 |           0.6078 |
+|     5103923_1 | CC(C)(C)S(=O)(=O)c1ccc(-c2ccccc2)cc1                                         |           1 |          4.9944 |           0.5381 |
+|     5103565_1 | CCOC(=O)N(c1ccccc1)P1(=S)OCC(C)(C)CO1                                        |           2 |          4.9928 |           0.5080 |
+|   5103264_1_1 | CCOc1ccc([C@@H](Nc2ccccc2)[P@@]2(=S)O[C@@H](C)[C@@H](C)O2)cc1                |           4 |          4.9831 |           0.4216 |
+|   5103264_1_4 | CCOc1ccc([C@@H](Nc2ccccc2)P2(=S)O[C@@H](C)[C@H](C)O2)cc1                     |           1 |          4.9804 |           0.5371 |
+|   5104971_1_2 | COc1ccc(NC(=O)[C@@H]2CC[C@](C)(C([O])=O)C2(C)C)cc1                           |           2 |          4.9700 |           0.5063 |
+|     5102951_1 | Cc1ccc(NC(=O)c2cc3ccccc3oc2=O)cc1                                            |           2 |          4.9656 |           0.4535 |
+|   5103264_1_5 | CCOc1ccc([C@H](Nc2ccccc2)[P@@]2(=S)O[C@@H](C)[C@@H](C)O2)cc1                 |           2 |          4.9574 |           0.4002 |
+|     5100169_1 | O=S(=O)(c1ccccc1)n1ccc2ccccc21                                               |           1 |          4.9416 |           0.4412 |
+|   5103265_1_1 | C[C@@H]1O[P@](=S)([C@H](Nc2ccccc2)c2ccccc2)O[C@@H]1C                         |           4 |          4.9399 |           0.4527 |
+|     5103434_1 | [O]C(=O)CC1(c2ccccc2)C(=O)c2ccccc2C1=O                                       |           8 |          4.9383 |           0.4624 |
+|   5104970_1_2 | Cc1ccc(NC(=O)[C@@H]2CC[C@](C)(C([O])=O)C2(C)C)cc1                            |           2 |          4.9262 |           0.4625 |
+|   5103553_1_3 | CCOC(=O)N(c1ccccc1)[P@@]1(=S)OCC[C@H](C)O1                                   |           4 |          4.9187 |           0.4738 |
+|   5102953_1_2 | CCOC(=O)/C=C(/C)Sc1cc(=O)oc2ccccc12                                          |           1 |          4.9131 |           0.6086 |
+|   5104977_1_3 | C[C@H](NC(=O)[C@H]1CC[C@@](C)(C([O])=O)C1(C)C)c1ccccc1                       |           1 |          4.9035 |           0.4641 |
+|   5100303_1_4 | CC1=C(C)C[C@@H](C(=O)c2ccccc2)[C@H](C([O])=O)C1                              |           5 |          4.9034 |           0.6507 |
+|   5104970_1_3 | Cc1ccc(NC(=O)[C@H]2CC[C@@](C)(C([O])=O)C2(C)C)cc1                            |           2 |          4.9017 |           0.4336 |
+|     5103037_1 | O=c1oc2ccccc2c(O)c1Cc1c(O)c2ccccc2oc1=O                                      |           2 |          4.9013 |           0.3602 |
+|   5102307_1_3 | CC(=O)N[C@]1(c2ccccc2)C[C@@H](C)[N@H+](C)C[C@H]1C                            |           1 |          4.8975 |           0.5106 |
+|   5102870_1_1 | CCC(=O)C[C@@H](Sc1cc(=O)oc2ccccc12)c1ccccc1                                  |           3 |          4.8935 |           0.4181 |
+|   5102939_1_1 | O=C(OC[C@H]1C[C@H]2C=C[C@@H]1C2)c1cc2ccccc2oc1=O                             |           3 |          4.8891 |           0.4523 |
+|   5103264_1_6 | CCOc1ccc([C@H](Nc2ccccc2)[P@]2(=S)O[C@@H](C)[C@@H](C)O2)cc1                  |           1 |          4.8843 |           0.4255 |
+|     5105133_1 | [O]C(=O)CCC(=O)Nc1cccc2c(NC(=O)CCC([O])=O)cccc12                             |           1 |          4.8829 |           0.3670 |
+|   5102263_1_3 | CC[C@@]1(OC(=O)c2ccccc2)C[C@H](C)[N@H+](C)C[C@H]1C                           |           4 |          4.8813 |           0.4570 |
+|     5102961_1 | O=C(Sc1ccccc1)c1cc2ccccc2oc1=O                                               |           5 |          4.8810 |           0.4196 |
+|     5101618_1 | O=C(COC(=O)c1ccccc1Cl)c1ccc(Br)cc1                                           |           3 |          4.8714 |           0.6274 |
+|   5104956_1_1 | C[C@H](NC(=O)COc1ccc(Cl)cc1Cl)c1ccccc1                                       |           1 |          4.8631 |           0.5100 |
+|     5101006_1 | CCN(CC)c1nc(N2CCOCC2)nc(N2CCOCC2)n1                                          |           1 |          4.8605 |           0.3940 |
+|   5101321_1_2 | CCOC1=C(C)OC(N)=C(C#N)[C@@H]1c1ccc(OC)cc1                                    |           3 |          4.8555 |           0.3763 |
+|   5100481_1_1 | CC(C)[C@@H](Nc1ccc(Br)cn1)n1cncn1                                            |           5 |          4.8448 |           0.3309 |
+|   5102953_1_1 | CCOC(=O)/C=C(\C)Sc1cc(=O)oc2ccccc12                                          |           2 |          4.8447 |           0.3676 |
+|   5103214_1_1 | CC1(C)COP(=S)([C@H](Nc2ccccc2)c2ccccc2)OC1                                   |           5 |          4.8439 |           0.4217 |
+|     5102996_1 | O=C(Nc1ccccc1)c1cc2ccccc2oc1=O                                               |           5 |          4.8427 |           0.6510 |
+|     5102667_1 | Cc1cc(C)c(S(=O)(=O)c2ccccc2)cc1C                                             |           1 |          4.8400 |           0.4993 |
+|  5102263_1_14 | CC[C@]1(OC(=O)c2ccccc2)C[C@@H](C)[N@@H+](C)C[C@@H]1C                         |           1 |          4.8364 |           0.4190 |
+|     5104153_1 | OC(C#CC[NH+]1CCOCC1)(c1ccccc1)c1ccccc1                                       |           1 |          4.8262 |           0.4600 |
+|   5100324_1_2 | O=C1C[C@@H](c2ccccc2)CN1C(=O)c1ccccc1                                        |           2 |          4.8255 |           0.5831 |
+|     5101846_1 | O=P(CC[NH+]1CCOCC1)(c1ccccc1)c1ccccc1                                        |           1 |          4.8124 |           0.4691 |
+|   5104977_1_1 | C[C@H](NC(=O)[C@H]1CC[C@](C)(C([O])=O)C1(C)C)c1ccccc1                        |           1 |          4.8095 |           0.4109 |
+|     5104952_1 | Cc1ccc(NC(=O)COc2ccc(Cl)cc2Cl)cc1                                            |           1 |          4.8036 |           0.5574 |
+|  5102263_1_13 | CC[C@@]1(OC(=O)c2ccccc2)C[C@@H](C)[N@@H+](C)C[C@@H]1C                        |           2 |          4.8022 |           0.5108 |
+|     5104350_1 | Sc1nc2ccccc2n1Cc1ccccc1                                                      |           3 |          4.7998 |           0.3890 |
+|   5100060_1_2 | COC(=O)[C@H]1CC=CC[C@H]1C(=O)c1c[nH]c2ccccc12                                |           2 |          4.7962 |           0.3604 |
+|     5103400_1 | O=C(c1ccc(Br)cc1)C1C(=O)c2ccccc2C1=O                                         |           6 |          4.7943 |           0.4908 |
+|   5102939_1_8 | O=C(OC[C@@H]1C[C@@H]2C=C[C@H]1C2)c1cc2ccccc2oc1=O                            |           1 |          4.7876 |           0.4270 |
+|     5103404_1 | CCOc1ccc(C2C(=O)c3ccccc3C2=O)cc1                                             |           5 |          4.7797 |           0.4412 |
+|   5102263_1_7 | CC[C@@]1(OC(=O)c2ccccc2)C[C@H](C)[N@@H+](C)C[C@H]1C                          |           1 |          4.7782 |           0.4184 |
+|   5103265_1_8 | C[C@@H]1OP(=S)([C@@H](Nc2ccccc2)c2ccccc2)O[C@H]1C                            |           1 |          4.7701 |           0.4526 |
+|   5102263_1_2 | CC[C@]1(OC(=O)c2ccccc2)C[C@H](C)[N@H+](C)C[C@@H]1C                           |           2 |          4.7638 |           0.4248 |
+|     5104018_1 | Brc1ccc(SCCc2ccncc2)cc1                                                      |           2 |          4.7499 |           0.5723 |
+|   5103214_1_2 | CC1(C)COP(=S)([C@@H](Nc2ccccc2)c2ccccc2)OC1                                  |           1 |          4.7457 |           0.5243 |
+|   5103264_1_8 | CCOc1ccc([C@H](Nc2ccccc2)P2(=S)O[C@@H](C)[C@H](C)O2)cc1                      |           2 |          4.7420 |           0.4308 |
+|   5103553_1_4 | CCOC(=O)N(c1ccccc1)[P@]1(=S)OCC[C@H](C)O1                                    |           5 |          4.7151 |           0.4930 |
+|  5102263_1_12 | CC[C@]1(OC(=O)c2ccccc2)C[C@@H](C)[N@H+](C)C[C@H]1C                           |           1 |          4.7078 |           0.3785 |
+|     5100224_1 | O=C1c2ccccc2C(=O)N1Cc1ccccc1                                                 |          10 |          4.7064 |           0.4563 |
+|   5100324_1_1 | O=C1C[C@H](c2ccccc2)CN1C(=O)c1ccccc1                                         |           1 |          4.7063 |           0.5272 |
+|     5102990_1 | O=C(OCc1ccc2c(c1)OCO2)c1cc2ccccc2oc1=O                                       |           2 |          4.7063 |           0.4704 |
+|   5104977_1_4 | C[C@H](NC(=O)[C@@H]1CC[C@@](C)(C([O])=O)C1(C)C)c1ccccc1                      |           2 |          4.7061 |           0.3310 |
+|   5103265_1_4 | C[C@@H]1OP(=S)([C@H](Nc2ccccc2)c2ccccc2)O[C@H]1C                             |           1 |          4.7008 |           0.4670 |
+|     5104947_1 | O=C(COc1ccc(Cl)cc1Cl)Nc1nccs1                                                |           3 |          4.6943 |           0.4501 |
+|   5104989_1_2 | [O]C(=O)[C@@H](Cc1c[nH]c2ccccc12)NC(=O)c1ccccc1                              |           2 |          4.6895 |           0.4282 |
+|   5100490_1_1 | C[C@@H](Nc1ccc(Cl)cn1)n1cncn1                                                |           5 |          4.6752 |           0.3426 |
+|     5104951_1 | COc1ccc(NC(=O)COc2ccc(Cl)cc2Cl)cc1                                           |           1 |          4.6706 |           0.3675 |
+|   5102307_1_7 | CC(=O)N[C@]1(c2ccccc2)C[C@@H](C)[N@H+](C)C[C@@H]1C                           |           1 |          4.6659 |           0.3725 |
+|     5104027_1 | Brc1ccc(SCCc2ccccn2)cc1                                                      |           1 |          4.6611 |           0.4642 |
+|   5102263_1_5 | CC[C@@]1(OC(=O)c2ccccc2)C[C@H](C)[N@@H+](C)C[C@@H]1C                         |           1 |          4.6410 |           0.4724 |
+|   5103265_1_5 | C[C@@H]1O[P@](=S)([C@@H](Nc2ccccc2)c2ccccc2)O[C@@H]1C                        |           2 |          4.6285 |           0.5161 |
+|     5102695_1 | Nc1ccc(Cl)c(NC(=O)CC(=O)c2ccccc2)c1                                          |           3 |          4.6267 |           0.4039 |
+|     5101460_1 | Nc1nc(Cl)nc(NCc2ccccc2)n1                                                    |           1 |          4.6194 |           0.4576 |
+|     5101633_1 | O=C(COC(=O)c1ccccc1Br)c1ccc(Br)cc1                                           |           2 |          4.6182 |           0.4627 |
+|   5102300_1_1 | CC(=O)N[C@@](C)(CC(=O)c1ccccc1)c1ccccc1                                      |           1 |          4.6176 |           0.3696 |
+|   5104977_1_5 | C[C@@H](NC(=O)[C@H]1CC[C@](C)(C([O])=O)C1(C)C)c1ccccc1                       |           2 |          4.5906 |           0.4553 |
+|   5102309_1_6 | CC(=O)NC1(NC(C)=O)CC[N@H+](C)[C@@H](c2ccccc2)[C@H]1C                         |           1 |          4.5876 |           0.4834 |
+|     5102859_1 | CCN(C(=O)c1cc2ccccc2oc1=O)c1ccccc1                                           |           1 |          4.5800 |           0.4109 |
+|   5103265_1_3 | C[C@H]1OP(=S)([C@H](Nc2ccccc2)c2ccccc2)O[C@@H]1C                             |           3 |          4.5753 |           0.4198 |
+|     5104413_1 | CC(=O)Nc1ccc(-c2ccc(NC(C)=O)cc2)cc1                                          |           3 |          4.5732 |           0.4144 |
+|   5104989_1_1 | [O]C(=O)[C@H](Cc1c[nH]c2ccccc12)NC(=O)c1ccccc1                               |           2 |          4.5715 |           0.4392 |
+|     5104311_1 | CCOP(=S)(OCC)SCn1c(=O)oc2cc(Cl)ccc21                                         |           1 |          4.5701 |           0.3175 |
+|     5101621_1 | O=C(COC(=O)c1ccccc1I)c1ccccc1                                                |           3 |          4.5690 |           0.4594 |
+|   5103553_1_2 | CCOC(=O)N(c1ccccc1)[P@]1(=S)OCC[C@@H](C)O1                                   |           3 |          4.5674 |           0.4618 |
+|     5100343_1 | Cc1nn(Cc2ccccc2)c(C)c1C([O])=O                                               |           1 |          4.5654 |           0.5141 |
+|     5102886_1 | O=C(c1cc2ccccc2oc1=O)N1CCOCC1                                                |           8 |          4.5580 |           0.5573 |
+|   5103265_1_7 | C[C@H]1OP(=S)([C@@H](Nc2ccccc2)c2ccccc2)O[C@@H]1C                            |           1 |          4.5552 |           0.3963 |
+|   5103265_1_2 | C[C@@H]1O[P@@](=S)([C@H](Nc2ccccc2)c2ccccc2)O[C@@H]1C                        |           1 |          4.5541 |           0.5858 |
+|     5101626_1 | COc1ccc(C(=O)COC(=O)c2cccc(I)c2)cc1                                          |           5 |          4.5399 |           0.4482 |
+|   5102264_1_8 | C[C@@H]1C[N@@H+](C)CC[C@H]1OC(=O)c1ccccc1                                    |           5 |          4.5377 |           0.5247 |
+|   5103553_1_1 | CCOC(=O)N(c1ccccc1)[P@@]1(=S)OCC[C@@H](C)O1                                  |           2 |          4.5344 |           0.4604 |
+|     5103834_1 | CCOC(=O)c1c(N)sc2c1CCCC2                                                     |           4 |          4.5327 |           0.4228 |
+|     5104010_1 | COc1ccc(SCCc2ccncc2)cc1                                                      |           5 |          4.5320 |           0.3850 |
+|     5104449_1 | COc1cccc(N2C(=O)c3ccccc3C2=O)c1                                              |           5 |          4.5186 |           0.7355 |
+|     5102946_1 | COC(=O)Oc1c(Br)c(=O)oc2ccccc12                                               |           4 |          4.5132 |           0.4735 |
+|   5103028_1_2 | CC[C@@H](O)C[C@@H](c1ccccc1)c1c(O)c2ccccc2oc1=O                              |           1 |          4.5122 |           0.3515 |
+|     5102962_1 | CCSC(=O)c1cc2ccccc2oc1=O                                                     |           7 |          4.5053 |           0.4812 |
+|     5105076_1 | COc1ccccc1NC(=O)Nc1ccccc1C                                                   |           2 |          4.5008 |           0.3461 |
+|     5101623_1 | COc1ccc(C(=O)COC(=O)c2ccccc2I)cc1                                            |           1 |          4.4966 |           0.4171 |
+|     5101634_1 | COc1ccc(C(=O)COC(=O)c2ccccc2Br)cc1                                           |           1 |          4.4953 |           0.4760 |
+|     5102383_1 | Cc1nn(Cc2ccccc2)c2ncccc12                                                    |           4 |          4.4607 |           0.4232 |
+|   5102152_1_1 | CC[C@@H](Cc1ccccc1)NC(=O)c1ccc(OC)c(OC)c1                                    |           1 |          4.4601 |           0.4300 |
+|     5102926_1 | Cc1ccc2c(CC([O])=O)cc(=O)oc2c1                                               |           7 |          4.4411 |           0.4780 |
+|     5100363_1 | CCOC(=O)c1c(C)n(C)c2ccc(OCc3ccccc3)cc12                                      |           1 |          4.4402 |           0.4288 |
+|     5100491_1 | Clc1ccc(NCn2cncn2)nc1                                                        |           2 |          4.4329 |           0.5413 |
+|   5102264_1_3 | C[C@H]1C[N@@H+](C)CC[C@@H]1OC(=O)c1ccccc1                                    |           1 |          4.4303 |           0.5317 |
+|   5102309_1_8 | CC(=O)NC1(NC(C)=O)CC[N@H+](C)[C@H](c2ccccc2)[C@H]1C                          |           1 |          4.4220 |           0.4153 |
+|   5102307_1_5 | CC(=O)N[C@]1(c2ccccc2)C[C@@H](C)[N@@H+](C)C[C@@H]1C                          |           1 |          4.4211 |           0.4205 |
+|     5103955_1 | COc1ccc(Sc2cccs2)cc1                                                         |           6 |          4.3935 |           0.5826 |
+|     5104842_1 | CC(=O)Nc1ccc(NC(=O)c2ccc(-c3ccccc3)cc2)cc1                                   |           1 |          4.3832 |           0.4727 |
+|   5102264_1_4 | C[C@H]1C[N@@H+](C)CC[C@H]1OC(=O)c1ccccc1                                     |           8 |          4.3753 |           0.5465 |
+|   5102263_1_6 | CC[C@]1(OC(=O)c2ccccc2)C[C@H](C)[N@@H+](C)C[C@@H]1C                          |           1 |          4.3620 |           0.4775 |
+|     5101081_1 | Nc1cc(Cc2ccc(O)c(N)c2)ccc1O                                                  |           1 |          4.3513 |           0.4501 |
+|     5104303_1 | COP(=S)(OC)SCN1C(=O)c2ccccc2C1=O                                             |           1 |          4.3405 |           0.5733 |
+|  5102263_1_10 | CC[C@]1(OC(=O)c2ccccc2)C[C@@H](C)[N@H+](C)C[C@@H]1C                          |           1 |          4.3331 |           0.4499 |
+|     5105074_1 | Cc1ccccc1NC(=O)Nc1ccccn1                                                     |           1 |          4.3310 |           0.5700 |
+|  5102263_1_16 | CC[C@]1(OC(=O)c2ccccc2)C[C@@H](C)[N@@H+](C)C[C@H]1C                          |           1 |          4.3304 |           0.4242 |
+|     5101807_1 | COc1ccc(C(=O)COC(=O)Cc2ccccc2)cc1                                            |           2 |          4.3233 |           0.4667 |
+|     5102871_1 | CC(=O)Nc1cc2ccccc2oc1=O                                                      |           3 |          4.3213 |           0.4394 |
+|     5102955_1 | CCOC(=O)c1c(O)c2ccccc2oc1=O                                                  |           4 |          4.3163 |           0.5384 |
+|     5100759_1 | CCOC(=O)c1c(C)[nH]c2ccc(O)cc12                                               |           2 |          4.3077 |           0.6105 |
+|  5102307_1_12 | CC(=O)N[C@@]1(c2ccccc2)C[C@H](C)[N@H+](C)C[C@H]1C                            |           2 |          4.3075 |           0.4299 |
+|   5102939_1_2 | O=C(OC[C@@H]1C[C@H]2C=C[C@@H]1C2)c1cc2ccccc2oc1=O                            |           2 |          4.3068 |           0.4525 |
+|   5100060_1_3 | COC(=O)[C@@H]1CC=CC[C@@H]1C(=O)c1c[nH]c2ccccc12                              |           1 |          4.3053 |           0.4355 |
+|     5101628_1 | COc1ccc(C(=O)COC(=O)c2ccc(Br)cc2)cc1                                         |           1 |          4.3027 |           0.6226 |
+|     5100778_1 | CC(=O)Oc1c2ccccc2c(OC(C)=O)c2ccccc12                                         |           1 |          4.2858 |           0.4545 |
+|     5103568_1 | COC(=O)N(c1ccccc1)P1(=S)OCCO1                                                |           4 |          4.2836 |           0.5682 |
+|     5104844_1 | O=C(c1ccc(-c2ccccc2)cc1)N1CCOCC1                                             |           1 |          4.2777 |           0.5308 |
+|   5103265_1_6 | C[C@@H]1O[P@@](=S)([C@@H](Nc2ccccc2)c2ccccc2)O[C@@H]1C                       |           3 |          4.2774 |           0.5299 |
+|     5102150_1 | COc1ccc(CCNC(=O)c2ccco2)cc1                                                  |           1 |          4.2684 |           0.4916 |
+|   5102307_1_6 | CC(=O)N[C@]1(c2ccccc2)C[C@H](C)[N@@H+](C)C[C@@H]1C                           |           1 |          4.2629 |           0.4022 |
+|     5102351_1 | CCOc1cc(C)nn1-c1ccccc1                                                       |           2 |          4.2564 |           0.4753 |
+|   5102264_1_2 | C[C@H]1C[N@H+](C)CC[C@H]1OC(=O)c1ccccc1                                      |           4 |          4.2464 |           0.3677 |
+|   5102309_1_2 | CC(=O)NC1(NC(C)=O)CC[N@H+](C)[C@@H](c2ccccc2)[C@@H]1C                        |           1 |          4.2381 |           0.4578 |
+|     5102105_1 | CCOC(=O)c1c(C)n(C)c2ccc(O)cc12                                               |           1 |          4.2301 |           0.4290 |
+|   5102263_1_9 | CC[C@@]1(OC(=O)c2ccccc2)C[C@@H](C)[N@H+](C)C[C@@H]1C                         |           1 |          4.2114 |           0.3165 |
+|  5102263_1_15 | CC[C@@]1(OC(=O)c2ccccc2)C[C@@H](C)[N@@H+](C)C[C@H]1C                         |           1 |          4.2080 |           0.4302 |
+|   5102264_1_7 | C[C@@H]1C[N@@H+](C)CC[C@@H]1OC(=O)c1ccccc1                                   |           1 |          4.2059 |           0.5886 |
+|   5102264_1_5 | C[C@@H]1C[N@H+](C)CC[C@@H]1OC(=O)c1ccccc1                                    |           3 |          4.2053 |           0.4611 |
+|   5100490_1_2 | C[C@H](Nc1ccc(Cl)cn1)n1cncn1                                                 |           5 |          4.1989 |           0.4129 |
+|     5101769_1 | COc1ccc(C(=O)COC(=O)c2ccccc2O)cc1                                            |           1 |          4.1972 |           0.5069 |
+|  5102307_1_16 | CC(=O)N[C@@]1(c2ccccc2)C[C@H](C)[N@H+](C)C[C@@H]1C                           |           2 |          4.1852 |           0.4373 |
+|     5104441_1 | [O]C(=O)CN1C(=O)c2ccccc2C1=O                                                 |           7 |          4.1805 |           0.5463 |
+|   5100423_1_2 | COc1ccccc1C(=O)N[C@H](C)c1ccccc1                                             |           4 |          4.1744 |           0.4141 |
+|   5102307_1_9 | CC(=O)N[C@@]1(c2ccccc2)C[C@@H](C)[N@@H+](C)C[C@H]1C                          |           1 |          4.1737 |           0.4696 |
+|  5102307_1_15 | CC(=O)N[C@@]1(c2ccccc2)C[C@@H](C)[N@H+](C)C[C@@H]1C                          |           1 |          4.1551 |           0.4838 |
+|   5102307_1_4 | CC(=O)N[C@]1(c2ccccc2)C[C@H](C)[N@H+](C)C[C@H]1C                             |           1 |          4.1530 |           0.3877 |
+|  5102307_1_10 | CC(=O)N[C@@]1(c2ccccc2)C[C@H](C)[N@@H+](C)C[C@H]1C                           |           2 |          4.1515 |           0.4392 |
+|   5102939_1_7 | O=C(OC[C@H]1C[C@@H]2C=C[C@H]1C2)c1cc2ccccc2oc1=O                             |           1 |          4.1467 |           0.5379 |
+|   5102264_1_1 | C[C@H]1C[N@H+](C)CC[C@@H]1OC(=O)c1ccccc1                                     |           4 |          4.1206 |           0.5288 |
+|     5101826_1 | Cc1ccc(C(=O)OCC(=O)c2ccccc2)cc1                                              |           3 |          4.1201 |           0.6953 |
+|     5100192_1 | [O]C(=O)CCn1c2c(c3ccccc31)CCCC2                                              |           3 |          4.0873 |           0.3162 |
+|   5100060_1_4 | COC(=O)[C@@H]1CC=CC[C@H]1C(=O)c1c[nH]c2ccccc12                               |           2 |          4.0797 |           0.5326 |
+|  5102307_1_11 | CC(=O)N[C@@]1(c2ccccc2)C[C@@H](C)[N@H+](C)C[C@H]1C                           |           3 |          4.0754 |           0.6718 |
+|  5102307_1_14 | CC(=O)N[C@@]1(c2ccccc2)C[C@H](C)[N@@H+](C)C[C@@H]1C                          |           1 |          4.0642 |           0.4619 |
+|     5101614_1 | O=C(COC(=O)c1ccccc1)c1ccc(Br)cc1                                             |           3 |          4.0445 |           0.5051 |
+|   5102307_1_2 | CC(=O)N[C@]1(c2ccccc2)C[C@H](C)[N@@H+](C)C[C@H]1C                            |           1 |          4.0302 |           0.4123 |
+|   5102264_1_6 | C[C@@H]1C[N@H+](C)CC[C@H]1OC(=O)c1ccccc1                                     |           1 |          4.0122 |           0.6495 |
+|   5102263_1_4 | CC[C@]1(OC(=O)c2ccccc2)C[C@H](C)[N@H+](C)C[C@H]1C                            |           1 |          3.9618 |           0.5321 |
+|     5104257_1 | COc1ccccc1NC(=O)CCCc1ccccc1                                                  |           1 |          3.9600 |           0.4741 |
+|  5102307_1_13 | CC(=O)N[C@@]1(c2ccccc2)C[C@@H](C)[N@@H+](C)C[C@@H]1C                         |           2 |          3.9285 |           0.3446 |
+|     5104902_1 | COC(=O)CCC(=O)Oc1ccc2ccccc2c1                                                |           1 |          3.9203 |           0.4478 |
+|   5102263_1_8 | CC[C@]1(OC(=O)c2ccccc2)C[C@H](C)[N@@H+](C)C[C@H]1C                           |           1 |          3.8734 |           0.3491 |
+|   5100423_1_1 | COc1ccccc1C(=O)N[C@@H](C)c1ccccc1                                            |           1 |          3.8433 |           0.4971 |
+|   5102263_1_1 | CC[C@@]1(OC(=O)c2ccccc2)C[C@H](C)[N@H+](C)C[C@@H]1C                          |           1 |          3.8306 |           0.5253 |
+|     5102370_1 | CC(=O)Nc1ccn(-c2ccccc2)n1                                                    |           4 |          3.8081 |           0.4430 |
+|   5102300_1_2 | CC(=O)N[C@](C)(CC(=O)c1ccccc1)c1ccccc1                                       |           1 |          3.7806 |           0.4112 |
+|     5103844_1 | C=CCS(=O)(=O)Nc1cccc2ccccc12                                                 |           1 |          3.7751 |           0.5130 |
+|          02_1 | O=C1NC(=O)C(F)=CN1                                                           |           9 |          3.7044 |           0.6170 |
+|     5102088_1 | COc1ccc(C(=O)NCCc2ccccc2)cc1                                                 |           1 |          3.7034 |           0.4592 |
+|     5100352_1 | CC(=O)N1CCC(=O)N1c1ccccc1                                                    |           1 |          3.6588 |           0.4821 |
+|     5100963_1 | O=P(O)(c1ccccc1)c1ccccc1                                                     |           2 |          3.6566 |           0.4580 |
+|     5101806_1 | O=C(Cc1ccccc1)OCC(=O)c1ccc(Br)cc1                                            |           1 |          3.6353 |           0.4528 |
+|     5103633_1 | O=C(Nc1ccccc1)Nn1cnnc1                                                       |           1 |          3.5169 |           0.3384 |
+|     5100922_1 | O=P(CO)(c1ccccc1)c1ccccc1                                                    |           2 |          3.4747 |           0.6986 |
+|   5102307_1_8 | CC(=O)N[C@]1(c2ccccc2)C[C@H](C)[N@H+](C)C[C@@H]1C                            |           1 |          3.4141 |           0.3583 |
+==========================================================================================
+
+📂 構造ファイルを 'top_affinity_poses' ディレクトリに保存します...
+  ✅ [Rank 1] 01_1 (DiffDock Rank: 4) -> 01_01_1_OrigRank4_pKd_7.20.sdf
+  ✅ [Rank 2] 5101276_1_7 (DiffDock Rank: 1) -> 02_5101276_1_7_OrigRank1_pKd_6.33.sdf
+  ✅ [Rank 3] 5101276_1_8 (DiffDock Rank: 2) -> 03_5101276_1_8_OrigRank2_pKd_6.17.sdf
+  ✅ [Rank 4] 5101276_1_5 (DiffDock Rank: 2) -> 04_5101276_1_5_OrigRank2_pKd_6.17.sdf
+  ✅ [Rank 5] 5102325_1 (DiffDock Rank: 6) -> 05_5102325_1_OrigRank6_pKd_6.12.sdf
+  ✅ [Rank 6] 5101276_1_2 (DiffDock Rank: 3) -> 06_5101276_1_2_OrigRank3_pKd_6.12.sdf
+  ✅ [Rank 7] 5101276_1_6 (DiffDock Rank: 4) -> 07_5101276_1_6_OrigRank4_pKd_6.01.sdf
+  ✅ [Rank 8] 5101276_1_1 (DiffDock Rank: 1) -> 08_5101276_1_1_OrigRank1_pKd_5.99.sdf
+  ✅ [Rank 9] 5101276_1_4 (DiffDock Rank: 1) -> 09_5101276_1_4_OrigRank1_pKd_5.99.sdf
+  ✅ [Rank 10] 5101271_1_1 (DiffDock Rank: 2) -> 10_5101271_1_1_OrigRank2_pKd_5.97.sdf
+  ✅ [Rank 11] 5101271_1_2 (DiffDock Rank: 4) -> 11_5101271_1_2_OrigRank4_pKd_5.96.sdf
+  ✅ [Rank 12] 5102816_1 (DiffDock Rank: 3) -> 12_5102816_1_OrigRank3_pKd_5.95.sdf
+  ✅ [Rank 13] 5104426_1_1 (DiffDock Rank: 3) -> 13_5104426_1_1_OrigRank3_pKd_5.94.sdf
+  ✅ [Rank 14] 5101024_1 (DiffDock Rank: 3) -> 14_5101024_1_OrigRank3_pKd_5.94.sdf
+  ✅ [Rank 15] 5101027_1 (DiffDock Rank: 2) -> 15_5101027_1_OrigRank2_pKd_5.92.sdf
+  ✅ [Rank 16] 5105106_1_2 (DiffDock Rank: 4) -> 16_5105106_1_2_OrigRank4_pKd_5.91.sdf
+  ✅ [Rank 17] 5101276_1_3 (DiffDock Rank: 1) -> 17_5101276_1_3_OrigRank1_pKd_5.90.sdf
+  ✅ [Rank 18] 5105106_1_1 (DiffDock Rank: 4) -> 18_5105106_1_1_OrigRank4_pKd_5.88.sdf
+  ✅ [Rank 19] 5104426_1_2 (DiffDock Rank: 2) -> 19_5104426_1_2_OrigRank2_pKd_5.83.sdf
+  ✅ [Rank 20] 5101019_1 (DiffDock Rank: 2) -> 20_5101019_1_OrigRank2_pKd_5.79.sdf
+  ✅ [Rank 21] 5101013_1 (DiffDock Rank: 1) -> 21_5101013_1_OrigRank1_pKd_5.78.sdf
+  ✅ [Rank 22] 5101474_1 (DiffDock Rank: 3) -> 22_5101474_1_OrigRank3_pKd_5.78.sdf
+  ✅ [Rank 23] 5101479_1 (DiffDock Rank: 5) -> 23_5101479_1_OrigRank5_pKd_5.76.sdf
+  ✅ [Rank 24] 5104477_1_1 (DiffDock Rank: 1) -> 24_5104477_1_1_OrigRank1_pKd_5.74.sdf
+  ✅ [Rank 25] 5101270_1_4 (DiffDock Rank: 2) -> 25_5101270_1_4_OrigRank2_pKd_5.73.sdf
+  ✅ [Rank 26] 5101271_1_4 (DiffDock Rank: 2) -> 26_5101271_1_4_OrigRank2_pKd_5.70.sdf
+  ✅ [Rank 27] 5101476_1 (DiffDock Rank: 6) -> 27_5101476_1_OrigRank6_pKd_5.70.sdf
+  ✅ [Rank 28] 5100928_1 (DiffDock Rank: 1) -> 28_5100928_1_OrigRank1_pKd_5.69.sdf
+  ✅ [Rank 29] 5101270_1_3 (DiffDock Rank: 1) -> 29_5101270_1_3_OrigRank1_pKd_5.68.sdf
+  ✅ [Rank 30] 5101468_1 (DiffDock Rank: 3) -> 30_5101468_1_OrigRank3_pKd_5.68.sdf
+  ✅ [Rank 31] 5101270_1_2 (DiffDock Rank: 1) -> 31_5101270_1_2_OrigRank1_pKd_5.68.sdf
+  ✅ [Rank 32] 5103483_1 (DiffDock Rank: 1) -> 32_5103483_1_OrigRank1_pKd_5.67.sdf
+  ✅ [Rank 33] 5101274_1_1 (DiffDock Rank: 3) -> 33_5101274_1_1_OrigRank3_pKd_5.66.sdf
+  ✅ [Rank 34] 5104682_1_2 (DiffDock Rank: 4) -> 34_5104682_1_2_OrigRank4_pKd_5.65.sdf
+  ✅ [Rank 35] 5102870_1_2 (DiffDock Rank: 1) -> 35_5102870_1_2_OrigRank1_pKd_5.63.sdf
+  ✅ [Rank 36] 5102726_1 (DiffDock Rank: 2) -> 36_5102726_1_OrigRank2_pKd_5.58.sdf
+  ✅ [Rank 37] 5101270_1_1 (DiffDock Rank: 1) -> 37_5101270_1_1_OrigRank1_pKd_5.56.sdf
+  ✅ [Rank 38] 5101410_1_2 (DiffDock Rank: 1) -> 38_5101410_1_2_OrigRank1_pKd_5.55.sdf
+  ✅ [Rank 39] 5104419_1 (DiffDock Rank: 3) -> 39_5104419_1_OrigRank3_pKd_5.55.sdf
+  ✅ [Rank 40] 5103388_1 (DiffDock Rank: 2) -> 40_5103388_1_OrigRank2_pKd_5.55.sdf
+  ✅ [Rank 41] 5104477_1_2 (DiffDock Rank: 1) -> 41_5104477_1_2_OrigRank1_pKd_5.54.sdf
+  ✅ [Rank 42] 5100018_1 (DiffDock Rank: 1) -> 42_5100018_1_OrigRank1_pKd_5.54.sdf
+  ✅ [Rank 43] 5101032_1 (DiffDock Rank: 1) -> 43_5101032_1_OrigRank1_pKd_5.53.sdf
+  ✅ [Rank 44] 5104682_1_1 (DiffDock Rank: 8) -> 44_5104682_1_1_OrigRank8_pKd_5.53.sdf
+  ✅ [Rank 45] 5104971_1_4 (DiffDock Rank: 1) -> 45_5104971_1_4_OrigRank1_pKd_5.51.sdf
+  ✅ [Rank 46] 5101306_1_1 (DiffDock Rank: 3) -> 46_5101306_1_1_OrigRank3_pKd_5.51.sdf
+  ✅ [Rank 47] 5101410_1_1 (DiffDock Rank: 1) -> 47_5101410_1_1_OrigRank1_pKd_5.50.sdf
+  ✅ [Rank 48] 5102887_1 (DiffDock Rank: 5) -> 48_5102887_1_OrigRank5_pKd_5.48.sdf
+  ✅ [Rank 49] 03_1 (DiffDock Rank: 5) -> 49_03_1_OrigRank5_pKd_5.47.sdf
+  ✅ [Rank 50] 5103028_1_3 (DiffDock Rank: 1) -> 50_5103028_1_3_OrigRank1_pKd_5.45.sdf
+  ✅ [Rank 51] 5101452_1 (DiffDock Rank: 2) -> 51_5101452_1_OrigRank2_pKd_5.43.sdf
+  ✅ [Rank 52] 5101472_1 (DiffDock Rank: 1) -> 52_5101472_1_OrigRank1_pKd_5.43.sdf
+  ✅ [Rank 53] 5101487_1 (DiffDock Rank: 2) -> 53_5101487_1_OrigRank2_pKd_5.40.sdf
+  ✅ [Rank 54] 5103493_1 (DiffDock Rank: 2) -> 54_5103493_1_OrigRank2_pKd_5.39.sdf
+  ✅ [Rank 55] 5100724_1 (DiffDock Rank: 3) -> 55_5100724_1_OrigRank3_pKd_5.38.sdf
+  ✅ [Rank 56] 5101465_1 (DiffDock Rank: 2) -> 56_5101465_1_OrigRank2_pKd_5.37.sdf
+  ✅ [Rank 57] 5101321_1_1 (DiffDock Rank: 1) -> 57_5101321_1_1_OrigRank1_pKd_5.37.sdf
+  ✅ [Rank 58] 5103028_1_4 (DiffDock Rank: 1) -> 58_5103028_1_4_OrigRank1_pKd_5.37.sdf
+  ✅ [Rank 59] 5104945_1 (DiffDock Rank: 3) -> 59_5104945_1_OrigRank3_pKd_5.35.sdf
+  ✅ [Rank 60] 5103028_1_1 (DiffDock Rank: 1) -> 60_5103028_1_1_OrigRank1_pKd_5.35.sdf
+  ✅ [Rank 61] 5101470_1 (DiffDock Rank: 1) -> 61_5101470_1_OrigRank1_pKd_5.32.sdf
+  ✅ [Rank 62] 5104452_1 (DiffDock Rank: 2) -> 62_5104452_1_OrigRank2_pKd_5.32.sdf
+  ✅ [Rank 63] 5104019_1 (DiffDock Rank: 4) -> 63_5104019_1_OrigRank4_pKd_5.31.sdf
+  ✅ [Rank 64] 5104977_1_2 (DiffDock Rank: 3) -> 64_5104977_1_2_OrigRank3_pKd_5.30.sdf
+  ✅ [Rank 65] 5105082_1 (DiffDock Rank: 1) -> 65_5105082_1_OrigRank1_pKd_5.30.sdf
+  ✅ [Rank 66] 5103411_1 (DiffDock Rank: 2) -> 66_5103411_1_OrigRank2_pKd_5.29.sdf
+  ✅ [Rank 67] 5100303_1_1 (DiffDock Rank: 4) -> 67_5100303_1_1_OrigRank4_pKd_5.28.sdf
+  ✅ [Rank 68] 5103281_1 (DiffDock Rank: 2) -> 68_5103281_1_OrigRank2_pKd_5.27.sdf
+  ✅ [Rank 69] 5104961_1 (DiffDock Rank: 1) -> 69_5104961_1_OrigRank1_pKd_5.25.sdf
+  ✅ [Rank 70] 5101457_1 (DiffDock Rank: 4) -> 70_5101457_1_OrigRank4_pKd_5.23.sdf
+  ✅ [Rank 71] 5101458_1 (DiffDock Rank: 1) -> 71_5101458_1_OrigRank1_pKd_5.23.sdf
+  ✅ [Rank 72] 5101357_1_2 (DiffDock Rank: 1) -> 72_5101357_1_2_OrigRank1_pKd_5.21.sdf
+  ✅ [Rank 73] 5104971_1_3 (DiffDock Rank: 1) -> 73_5104971_1_3_OrigRank1_pKd_5.19.sdf
+  ✅ [Rank 74] 5102882_1 (DiffDock Rank: 5) -> 74_5102882_1_OrigRank5_pKd_5.19.sdf
+  ✅ [Rank 75] 5105138_1_2 (DiffDock Rank: 2) -> 75_5105138_1_2_OrigRank2_pKd_5.19.sdf
+  ✅ [Rank 76] 5102338_1 (DiffDock Rank: 1) -> 76_5102338_1_OrigRank1_pKd_5.18.sdf
+  ✅ [Rank 77] 5100163_1 (DiffDock Rank: 1) -> 77_5100163_1_OrigRank1_pKd_5.18.sdf
+  ✅ [Rank 78] 5103412_1 (DiffDock Rank: 1) -> 78_5103412_1_OrigRank1_pKd_5.16.sdf
+  ✅ [Rank 79] 5105101_1_2 (DiffDock Rank: 4) -> 79_5105101_1_2_OrigRank4_pKd_5.16.sdf
+  ✅ [Rank 80] 5104958_1 (DiffDock Rank: 1) -> 80_5104958_1_OrigRank1_pKd_5.16.sdf
+  ✅ [Rank 81] 5104970_1_1 (DiffDock Rank: 3) -> 81_5104970_1_1_OrigRank3_pKd_5.15.sdf
+  ✅ [Rank 82] 5101306_1_2 (DiffDock Rank: 2) -> 82_5101306_1_2_OrigRank2_pKd_5.15.sdf
+  ✅ [Rank 83] 5104971_1_1 (DiffDock Rank: 2) -> 83_5104971_1_1_OrigRank2_pKd_5.15.sdf
+  ✅ [Rank 84] 5104434_1 (DiffDock Rank: 2) -> 84_5104434_1_OrigRank2_pKd_5.14.sdf
+  ✅ [Rank 85] 5101485_1 (DiffDock Rank: 1) -> 85_5101485_1_OrigRank1_pKd_5.14.sdf
+  ✅ [Rank 86] 5101484_1 (DiffDock Rank: 1) -> 86_5101484_1_OrigRank1_pKd_5.14.sdf
+  ✅ [Rank 87] 5104977_1_6 (DiffDock Rank: 2) -> 87_5104977_1_6_OrigRank2_pKd_5.13.sdf
+  ✅ [Rank 88] 5104014_1 (DiffDock Rank: 5) -> 88_5104014_1_OrigRank5_pKd_5.13.sdf
+  ✅ [Rank 89] 5101455_1 (DiffDock Rank: 6) -> 89_5101455_1_OrigRank6_pKd_5.13.sdf
+  ✅ [Rank 90] 5104826_1 (DiffDock Rank: 1) -> 90_5104826_1_OrigRank1_pKd_5.11.sdf
+  ✅ [Rank 91] 5105138_1_1 (DiffDock Rank: 7) -> 91_5105138_1_1_OrigRank7_pKd_5.11.sdf
+  ✅ [Rank 92] 5104970_1_4 (DiffDock Rank: 1) -> 92_5104970_1_4_OrigRank1_pKd_5.09.sdf
+  ✅ [Rank 93] 5105101_1_1 (DiffDock Rank: 7) -> 93_5105101_1_1_OrigRank7_pKd_5.09.sdf
+  ✅ [Rank 94] 5104977_1_7 (DiffDock Rank: 1) -> 94_5104977_1_7_OrigRank1_pKd_5.08.sdf
+  ✅ [Rank 95] 5104029_1 (DiffDock Rank: 3) -> 95_5104029_1_OrigRank3_pKd_5.07.sdf
+  ✅ [Rank 96] 5105108_1 (DiffDock Rank: 2) -> 96_5105108_1_OrigRank2_pKd_5.06.sdf
+  ✅ [Rank 97] 5102983_1 (DiffDock Rank: 6) -> 97_5102983_1_OrigRank6_pKd_5.05.sdf
+  ✅ [Rank 98] 5100303_1_2 (DiffDock Rank: 8) -> 98_5100303_1_2_OrigRank8_pKd_5.04.sdf
+  ✅ [Rank 99] 5101357_1_1 (DiffDock Rank: 1) -> 99_5101357_1_1_OrigRank1_pKd_5.04.sdf
+  ✅ [Rank 100] 5104040_1 (DiffDock Rank: 4) -> 100_5104040_1_OrigRank4_pKd_5.04.sdf
+  ✅ [Rank 101] 5101471_1 (DiffDock Rank: 2) -> 101_5101471_1_OrigRank2_pKd_5.03.sdf
+  ✅ [Rank 102] 5104977_1_8 (DiffDock Rank: 2) -> 102_5104977_1_8_OrigRank2_pKd_5.03.sdf
+  ✅ [Rank 103] 5103264_1_2 (DiffDock Rank: 1) -> 103_5103264_1_2_OrigRank1_pKd_5.03.sdf
+  ✅ [Rank 104] 5100481_1_2 (DiffDock Rank: 3) -> 104_5100481_1_2_OrigRank3_pKd_5.02.sdf
+  ✅ [Rank 105] 5103264_1_7 (DiffDock Rank: 1) -> 105_5103264_1_7_OrigRank1_pKd_5.02.sdf
+  ✅ [Rank 106] 5102883_1 (DiffDock Rank: 5) -> 106_5102883_1_OrigRank5_pKd_5.02.sdf
+  ✅ [Rank 107] 5103264_1_3 (DiffDock Rank: 1) -> 107_5103264_1_3_OrigRank1_pKd_5.01.sdf
+  ✅ [Rank 108] 5100060_1_1 (DiffDock Rank: 2) -> 108_5100060_1_1_OrigRank2_pKd_5.01.sdf
+  ✅ [Rank 109] 5102884_1 (DiffDock Rank: 3) -> 109_5102884_1_OrigRank3_pKd_5.01.sdf
+  ✅ [Rank 110] 5104956_1_2 (DiffDock Rank: 2) -> 110_5104956_1_2_OrigRank2_pKd_5.00.sdf
+  ✅ [Rank 111] 5100303_1_3 (DiffDock Rank: 4) -> 111_5100303_1_3_OrigRank4_pKd_5.00.sdf
+  ✅ [Rank 112] 5103923_1 (DiffDock Rank: 1) -> 112_5103923_1_OrigRank1_pKd_4.99.sdf
+  ✅ [Rank 113] 5103565_1 (DiffDock Rank: 2) -> 113_5103565_1_OrigRank2_pKd_4.99.sdf
+  ✅ [Rank 114] 5103264_1_1 (DiffDock Rank: 4) -> 114_5103264_1_1_OrigRank4_pKd_4.98.sdf
+  ✅ [Rank 115] 5103264_1_4 (DiffDock Rank: 1) -> 115_5103264_1_4_OrigRank1_pKd_4.98.sdf
+  ✅ [Rank 116] 5104971_1_2 (DiffDock Rank: 2) -> 116_5104971_1_2_OrigRank2_pKd_4.97.sdf
+  ✅ [Rank 117] 5102951_1 (DiffDock Rank: 2) -> 117_5102951_1_OrigRank2_pKd_4.97.sdf
+  ✅ [Rank 118] 5103264_1_5 (DiffDock Rank: 2) -> 118_5103264_1_5_OrigRank2_pKd_4.96.sdf
+  ✅ [Rank 119] 5100169_1 (DiffDock Rank: 1) -> 119_5100169_1_OrigRank1_pKd_4.94.sdf
+  ✅ [Rank 120] 5103265_1_1 (DiffDock Rank: 4) -> 120_5103265_1_1_OrigRank4_pKd_4.94.sdf
+  ✅ [Rank 121] 5103434_1 (DiffDock Rank: 8) -> 121_5103434_1_OrigRank8_pKd_4.94.sdf
+  ✅ [Rank 122] 5104970_1_2 (DiffDock Rank: 2) -> 122_5104970_1_2_OrigRank2_pKd_4.93.sdf
+  ✅ [Rank 123] 5103553_1_3 (DiffDock Rank: 4) -> 123_5103553_1_3_OrigRank4_pKd_4.92.sdf
+  ✅ [Rank 124] 5102953_1_2 (DiffDock Rank: 1) -> 124_5102953_1_2_OrigRank1_pKd_4.91.sdf
+  ✅ [Rank 125] 5104977_1_3 (DiffDock Rank: 1) -> 125_5104977_1_3_OrigRank1_pKd_4.90.sdf
+  ✅ [Rank 126] 5100303_1_4 (DiffDock Rank: 5) -> 126_5100303_1_4_OrigRank5_pKd_4.90.sdf
+  ✅ [Rank 127] 5104970_1_3 (DiffDock Rank: 2) -> 127_5104970_1_3_OrigRank2_pKd_4.90.sdf
+  ✅ [Rank 128] 5103037_1 (DiffDock Rank: 2) -> 128_5103037_1_OrigRank2_pKd_4.90.sdf
+  ✅ [Rank 129] 5102307_1_3 (DiffDock Rank: 1) -> 129_5102307_1_3_OrigRank1_pKd_4.90.sdf
+  ✅ [Rank 130] 5102870_1_1 (DiffDock Rank: 3) -> 130_5102870_1_1_OrigRank3_pKd_4.89.sdf
+  ✅ [Rank 131] 5102939_1_1 (DiffDock Rank: 3) -> 131_5102939_1_1_OrigRank3_pKd_4.89.sdf
+  ✅ [Rank 132] 5103264_1_6 (DiffDock Rank: 1) -> 132_5103264_1_6_OrigRank1_pKd_4.88.sdf
+  ✅ [Rank 133] 5105133_1 (DiffDock Rank: 1) -> 133_5105133_1_OrigRank1_pKd_4.88.sdf
+  ✅ [Rank 134] 5102263_1_3 (DiffDock Rank: 4) -> 134_5102263_1_3_OrigRank4_pKd_4.88.sdf
+  ✅ [Rank 135] 5102961_1 (DiffDock Rank: 5) -> 135_5102961_1_OrigRank5_pKd_4.88.sdf
+  ✅ [Rank 136] 5101618_1 (DiffDock Rank: 3) -> 136_5101618_1_OrigRank3_pKd_4.87.sdf
+  ✅ [Rank 137] 5104956_1_1 (DiffDock Rank: 1) -> 137_5104956_1_1_OrigRank1_pKd_4.86.sdf
+  ✅ [Rank 138] 5101006_1 (DiffDock Rank: 1) -> 138_5101006_1_OrigRank1_pKd_4.86.sdf
+  ✅ [Rank 139] 5101321_1_2 (DiffDock Rank: 3) -> 139_5101321_1_2_OrigRank3_pKd_4.86.sdf
+  ✅ [Rank 140] 5100481_1_1 (DiffDock Rank: 5) -> 140_5100481_1_1_OrigRank5_pKd_4.84.sdf
+  ✅ [Rank 141] 5102953_1_1 (DiffDock Rank: 2) -> 141_5102953_1_1_OrigRank2_pKd_4.84.sdf
+  ✅ [Rank 142] 5103214_1_1 (DiffDock Rank: 5) -> 142_5103214_1_1_OrigRank5_pKd_4.84.sdf
+  ✅ [Rank 143] 5102996_1 (DiffDock Rank: 5) -> 143_5102996_1_OrigRank5_pKd_4.84.sdf
+  ✅ [Rank 144] 5102667_1 (DiffDock Rank: 1) -> 144_5102667_1_OrigRank1_pKd_4.84.sdf
+  ✅ [Rank 145] 5102263_1_14 (DiffDock Rank: 1) -> 145_5102263_1_14_OrigRank1_pKd_4.84.sdf
+  ✅ [Rank 146] 5104153_1 (DiffDock Rank: 1) -> 146_5104153_1_OrigRank1_pKd_4.83.sdf
+  ✅ [Rank 147] 5100324_1_2 (DiffDock Rank: 2) -> 147_5100324_1_2_OrigRank2_pKd_4.83.sdf
+  ✅ [Rank 148] 5101846_1 (DiffDock Rank: 1) -> 148_5101846_1_OrigRank1_pKd_4.81.sdf
+  ✅ [Rank 149] 5104977_1_1 (DiffDock Rank: 1) -> 149_5104977_1_1_OrigRank1_pKd_4.81.sdf
+  ✅ [Rank 150] 5104952_1 (DiffDock Rank: 1) -> 150_5104952_1_OrigRank1_pKd_4.80.sdf
+  ✅ [Rank 151] 5102263_1_13 (DiffDock Rank: 2) -> 151_5102263_1_13_OrigRank2_pKd_4.80.sdf
+  ✅ [Rank 152] 5104350_1 (DiffDock Rank: 3) -> 152_5104350_1_OrigRank3_pKd_4.80.sdf
+  ✅ [Rank 153] 5100060_1_2 (DiffDock Rank: 2) -> 153_5100060_1_2_OrigRank2_pKd_4.80.sdf
+  ✅ [Rank 154] 5103400_1 (DiffDock Rank: 6) -> 154_5103400_1_OrigRank6_pKd_4.79.sdf
+  ✅ [Rank 155] 5102939_1_8 (DiffDock Rank: 1) -> 155_5102939_1_8_OrigRank1_pKd_4.79.sdf
+  ✅ [Rank 156] 5103404_1 (DiffDock Rank: 5) -> 156_5103404_1_OrigRank5_pKd_4.78.sdf
+  ✅ [Rank 157] 5102263_1_7 (DiffDock Rank: 1) -> 157_5102263_1_7_OrigRank1_pKd_4.78.sdf
+  ✅ [Rank 158] 5103265_1_8 (DiffDock Rank: 1) -> 158_5103265_1_8_OrigRank1_pKd_4.77.sdf
+  ✅ [Rank 159] 5102263_1_2 (DiffDock Rank: 2) -> 159_5102263_1_2_OrigRank2_pKd_4.76.sdf
+  ✅ [Rank 160] 5104018_1 (DiffDock Rank: 2) -> 160_5104018_1_OrigRank2_pKd_4.75.sdf
+  ✅ [Rank 161] 5103214_1_2 (DiffDock Rank: 1) -> 161_5103214_1_2_OrigRank1_pKd_4.75.sdf
+  ✅ [Rank 162] 5103264_1_8 (DiffDock Rank: 2) -> 162_5103264_1_8_OrigRank2_pKd_4.74.sdf
+  ✅ [Rank 163] 5103553_1_4 (DiffDock Rank: 5) -> 163_5103553_1_4_OrigRank5_pKd_4.72.sdf
+  ✅ [Rank 164] 5102263_1_12 (DiffDock Rank: 1) -> 164_5102263_1_12_OrigRank1_pKd_4.71.sdf
+  ✅ [Rank 165] 5100224_1 (DiffDock Rank: 10) -> 165_5100224_1_OrigRank10_pKd_4.71.sdf
+  ✅ [Rank 166] 5100324_1_1 (DiffDock Rank: 1) -> 166_5100324_1_1_OrigRank1_pKd_4.71.sdf
+  ✅ [Rank 167] 5102990_1 (DiffDock Rank: 2) -> 167_5102990_1_OrigRank2_pKd_4.71.sdf
+  ✅ [Rank 168] 5104977_1_4 (DiffDock Rank: 2) -> 168_5104977_1_4_OrigRank2_pKd_4.71.sdf
+  ✅ [Rank 169] 5103265_1_4 (DiffDock Rank: 1) -> 169_5103265_1_4_OrigRank1_pKd_4.70.sdf
+  ✅ [Rank 170] 5104947_1 (DiffDock Rank: 3) -> 170_5104947_1_OrigRank3_pKd_4.69.sdf
+  ✅ [Rank 171] 5104989_1_2 (DiffDock Rank: 2) -> 171_5104989_1_2_OrigRank2_pKd_4.69.sdf
+  ✅ [Rank 172] 5100490_1_1 (DiffDock Rank: 5) -> 172_5100490_1_1_OrigRank5_pKd_4.68.sdf
+  ✅ [Rank 173] 5104951_1 (DiffDock Rank: 1) -> 173_5104951_1_OrigRank1_pKd_4.67.sdf
+  ✅ [Rank 174] 5102307_1_7 (DiffDock Rank: 1) -> 174_5102307_1_7_OrigRank1_pKd_4.67.sdf
+  ✅ [Rank 175] 5104027_1 (DiffDock Rank: 1) -> 175_5104027_1_OrigRank1_pKd_4.66.sdf
+  ✅ [Rank 176] 5102263_1_5 (DiffDock Rank: 1) -> 176_5102263_1_5_OrigRank1_pKd_4.64.sdf
+  ✅ [Rank 177] 5103265_1_5 (DiffDock Rank: 2) -> 177_5103265_1_5_OrigRank2_pKd_4.63.sdf
+  ✅ [Rank 178] 5102695_1 (DiffDock Rank: 3) -> 178_5102695_1_OrigRank3_pKd_4.63.sdf
+  ✅ [Rank 179] 5101460_1 (DiffDock Rank: 1) -> 179_5101460_1_OrigRank1_pKd_4.62.sdf
+  ✅ [Rank 180] 5101633_1 (DiffDock Rank: 2) -> 180_5101633_1_OrigRank2_pKd_4.62.sdf
+  ✅ [Rank 181] 5102300_1_1 (DiffDock Rank: 1) -> 181_5102300_1_1_OrigRank1_pKd_4.62.sdf
+  ✅ [Rank 182] 5104977_1_5 (DiffDock Rank: 2) -> 182_5104977_1_5_OrigRank2_pKd_4.59.sdf
+  ✅ [Rank 183] 5102309_1_6 (DiffDock Rank: 1) -> 183_5102309_1_6_OrigRank1_pKd_4.59.sdf
+  ✅ [Rank 184] 5102859_1 (DiffDock Rank: 1) -> 184_5102859_1_OrigRank1_pKd_4.58.sdf
+  ✅ [Rank 185] 5103265_1_3 (DiffDock Rank: 3) -> 185_5103265_1_3_OrigRank3_pKd_4.58.sdf
+  ✅ [Rank 186] 5104413_1 (DiffDock Rank: 3) -> 186_5104413_1_OrigRank3_pKd_4.57.sdf
+  ✅ [Rank 187] 5104989_1_1 (DiffDock Rank: 2) -> 187_5104989_1_1_OrigRank2_pKd_4.57.sdf
+  ✅ [Rank 188] 5104311_1 (DiffDock Rank: 1) -> 188_5104311_1_OrigRank1_pKd_4.57.sdf
+  ✅ [Rank 189] 5101621_1 (DiffDock Rank: 3) -> 189_5101621_1_OrigRank3_pKd_4.57.sdf
+  ✅ [Rank 190] 5103553_1_2 (DiffDock Rank: 3) -> 190_5103553_1_2_OrigRank3_pKd_4.57.sdf
+  ✅ [Rank 191] 5100343_1 (DiffDock Rank: 1) -> 191_5100343_1_OrigRank1_pKd_4.57.sdf
+  ✅ [Rank 192] 5102886_1 (DiffDock Rank: 8) -> 192_5102886_1_OrigRank8_pKd_4.56.sdf
+  ✅ [Rank 193] 5103265_1_7 (DiffDock Rank: 1) -> 193_5103265_1_7_OrigRank1_pKd_4.56.sdf
+  ✅ [Rank 194] 5103265_1_2 (DiffDock Rank: 1) -> 194_5103265_1_2_OrigRank1_pKd_4.55.sdf
+  ✅ [Rank 195] 5101626_1 (DiffDock Rank: 5) -> 195_5101626_1_OrigRank5_pKd_4.54.sdf
+  ✅ [Rank 196] 5102264_1_8 (DiffDock Rank: 5) -> 196_5102264_1_8_OrigRank5_pKd_4.54.sdf
+  ✅ [Rank 197] 5103553_1_1 (DiffDock Rank: 2) -> 197_5103553_1_1_OrigRank2_pKd_4.53.sdf
+  ✅ [Rank 198] 5103834_1 (DiffDock Rank: 4) -> 198_5103834_1_OrigRank4_pKd_4.53.sdf
+  ✅ [Rank 199] 5104010_1 (DiffDock Rank: 5) -> 199_5104010_1_OrigRank5_pKd_4.53.sdf
+  ✅ [Rank 200] 5104449_1 (DiffDock Rank: 5) -> 200_5104449_1_OrigRank5_pKd_4.52.sdf
+  ✅ [Rank 201] 5102946_1 (DiffDock Rank: 4) -> 201_5102946_1_OrigRank4_pKd_4.51.sdf
+  ✅ [Rank 202] 5103028_1_2 (DiffDock Rank: 1) -> 202_5103028_1_2_OrigRank1_pKd_4.51.sdf
+  ✅ [Rank 203] 5102962_1 (DiffDock Rank: 7) -> 203_5102962_1_OrigRank7_pKd_4.51.sdf
+  ✅ [Rank 204] 5105076_1 (DiffDock Rank: 2) -> 204_5105076_1_OrigRank2_pKd_4.50.sdf
+  ✅ [Rank 205] 5101623_1 (DiffDock Rank: 1) -> 205_5101623_1_OrigRank1_pKd_4.50.sdf
+  ✅ [Rank 206] 5101634_1 (DiffDock Rank: 1) -> 206_5101634_1_OrigRank1_pKd_4.50.sdf
+  ✅ [Rank 207] 5102383_1 (DiffDock Rank: 4) -> 207_5102383_1_OrigRank4_pKd_4.46.sdf
+  ✅ [Rank 208] 5102152_1_1 (DiffDock Rank: 1) -> 208_5102152_1_1_OrigRank1_pKd_4.46.sdf
+  ✅ [Rank 209] 5102926_1 (DiffDock Rank: 7) -> 209_5102926_1_OrigRank7_pKd_4.44.sdf
+  ✅ [Rank 210] 5100363_1 (DiffDock Rank: 1) -> 210_5100363_1_OrigRank1_pKd_4.44.sdf
+  ✅ [Rank 211] 5100491_1 (DiffDock Rank: 2) -> 211_5100491_1_OrigRank2_pKd_4.43.sdf
+  ✅ [Rank 212] 5102264_1_3 (DiffDock Rank: 1) -> 212_5102264_1_3_OrigRank1_pKd_4.43.sdf
+  ✅ [Rank 213] 5102309_1_8 (DiffDock Rank: 1) -> 213_5102309_1_8_OrigRank1_pKd_4.42.sdf
+  ✅ [Rank 214] 5102307_1_5 (DiffDock Rank: 1) -> 214_5102307_1_5_OrigRank1_pKd_4.42.sdf
+  ✅ [Rank 215] 5103955_1 (DiffDock Rank: 6) -> 215_5103955_1_OrigRank6_pKd_4.39.sdf
+  ✅ [Rank 216] 5104842_1 (DiffDock Rank: 1) -> 216_5104842_1_OrigRank1_pKd_4.38.sdf
+  ✅ [Rank 217] 5102264_1_4 (DiffDock Rank: 8) -> 217_5102264_1_4_OrigRank8_pKd_4.38.sdf
+  ✅ [Rank 218] 5102263_1_6 (DiffDock Rank: 1) -> 218_5102263_1_6_OrigRank1_pKd_4.36.sdf
+  ✅ [Rank 219] 5101081_1 (DiffDock Rank: 1) -> 219_5101081_1_OrigRank1_pKd_4.35.sdf
+  ✅ [Rank 220] 5104303_1 (DiffDock Rank: 1) -> 220_5104303_1_OrigRank1_pKd_4.34.sdf
+  ✅ [Rank 221] 5102263_1_10 (DiffDock Rank: 1) -> 221_5102263_1_10_OrigRank1_pKd_4.33.sdf
+  ✅ [Rank 222] 5105074_1 (DiffDock Rank: 1) -> 222_5105074_1_OrigRank1_pKd_4.33.sdf
+  ✅ [Rank 223] 5102263_1_16 (DiffDock Rank: 1) -> 223_5102263_1_16_OrigRank1_pKd_4.33.sdf
+  ✅ [Rank 224] 5101807_1 (DiffDock Rank: 2) -> 224_5101807_1_OrigRank2_pKd_4.32.sdf
+  ✅ [Rank 225] 5102871_1 (DiffDock Rank: 3) -> 225_5102871_1_OrigRank3_pKd_4.32.sdf
+  ✅ [Rank 226] 5102955_1 (DiffDock Rank: 4) -> 226_5102955_1_OrigRank4_pKd_4.32.sdf
+  ✅ [Rank 227] 5100759_1 (DiffDock Rank: 2) -> 227_5100759_1_OrigRank2_pKd_4.31.sdf
+  ✅ [Rank 228] 5102307_1_12 (DiffDock Rank: 2) -> 228_5102307_1_12_OrigRank2_pKd_4.31.sdf
+  ✅ [Rank 229] 5102939_1_2 (DiffDock Rank: 2) -> 229_5102939_1_2_OrigRank2_pKd_4.31.sdf
+  ✅ [Rank 230] 5100060_1_3 (DiffDock Rank: 1) -> 230_5100060_1_3_OrigRank1_pKd_4.31.sdf
+  ✅ [Rank 231] 5101628_1 (DiffDock Rank: 1) -> 231_5101628_1_OrigRank1_pKd_4.30.sdf
+  ✅ [Rank 232] 5100778_1 (DiffDock Rank: 1) -> 232_5100778_1_OrigRank1_pKd_4.29.sdf
+  ✅ [Rank 233] 5103568_1 (DiffDock Rank: 4) -> 233_5103568_1_OrigRank4_pKd_4.28.sdf
+  ✅ [Rank 234] 5104844_1 (DiffDock Rank: 1) -> 234_5104844_1_OrigRank1_pKd_4.28.sdf
+  ✅ [Rank 235] 5103265_1_6 (DiffDock Rank: 3) -> 235_5103265_1_6_OrigRank3_pKd_4.28.sdf
+  ✅ [Rank 236] 5102150_1 (DiffDock Rank: 1) -> 236_5102150_1_OrigRank1_pKd_4.27.sdf
+  ✅ [Rank 237] 5102307_1_6 (DiffDock Rank: 1) -> 237_5102307_1_6_OrigRank1_pKd_4.26.sdf
+  ✅ [Rank 238] 5102351_1 (DiffDock Rank: 2) -> 238_5102351_1_OrigRank2_pKd_4.26.sdf
+  ✅ [Rank 239] 5102264_1_2 (DiffDock Rank: 4) -> 239_5102264_1_2_OrigRank4_pKd_4.25.sdf
+  ✅ [Rank 240] 5102309_1_2 (DiffDock Rank: 1) -> 240_5102309_1_2_OrigRank1_pKd_4.24.sdf
+  ✅ [Rank 241] 5102105_1 (DiffDock Rank: 1) -> 241_5102105_1_OrigRank1_pKd_4.23.sdf
+  ✅ [Rank 242] 5102263_1_9 (DiffDock Rank: 1) -> 242_5102263_1_9_OrigRank1_pKd_4.21.sdf
+  ✅ [Rank 243] 5102263_1_15 (DiffDock Rank: 1) -> 243_5102263_1_15_OrigRank1_pKd_4.21.sdf
+  ✅ [Rank 244] 5102264_1_7 (DiffDock Rank: 1) -> 244_5102264_1_7_OrigRank1_pKd_4.21.sdf
+  ✅ [Rank 245] 5102264_1_5 (DiffDock Rank: 3) -> 245_5102264_1_5_OrigRank3_pKd_4.21.sdf
+  ✅ [Rank 246] 5100490_1_2 (DiffDock Rank: 5) -> 246_5100490_1_2_OrigRank5_pKd_4.20.sdf
+  ✅ [Rank 247] 5101769_1 (DiffDock Rank: 1) -> 247_5101769_1_OrigRank1_pKd_4.20.sdf
+  ✅ [Rank 248] 5102307_1_16 (DiffDock Rank: 2) -> 248_5102307_1_16_OrigRank2_pKd_4.19.sdf
+  ✅ [Rank 249] 5104441_1 (DiffDock Rank: 7) -> 249_5104441_1_OrigRank7_pKd_4.18.sdf
+  ✅ [Rank 250] 5100423_1_2 (DiffDock Rank: 4) -> 250_5100423_1_2_OrigRank4_pKd_4.17.sdf
+  ✅ [Rank 251] 5102307_1_9 (DiffDock Rank: 1) -> 251_5102307_1_9_OrigRank1_pKd_4.17.sdf
+  ✅ [Rank 252] 5102307_1_15 (DiffDock Rank: 1) -> 252_5102307_1_15_OrigRank1_pKd_4.16.sdf
+  ✅ [Rank 253] 5102307_1_4 (DiffDock Rank: 1) -> 253_5102307_1_4_OrigRank1_pKd_4.15.sdf
+  ✅ [Rank 254] 5102307_1_10 (DiffDock Rank: 2) -> 254_5102307_1_10_OrigRank2_pKd_4.15.sdf
+  ✅ [Rank 255] 5102939_1_7 (DiffDock Rank: 1) -> 255_5102939_1_7_OrigRank1_pKd_4.15.sdf
+  ✅ [Rank 256] 5102264_1_1 (DiffDock Rank: 4) -> 256_5102264_1_1_OrigRank4_pKd_4.12.sdf
+  ✅ [Rank 257] 5101826_1 (DiffDock Rank: 3) -> 257_5101826_1_OrigRank3_pKd_4.12.sdf
+  ✅ [Rank 258] 5100192_1 (DiffDock Rank: 3) -> 258_5100192_1_OrigRank3_pKd_4.09.sdf
+  ✅ [Rank 259] 5100060_1_4 (DiffDock Rank: 2) -> 259_5100060_1_4_OrigRank2_pKd_4.08.sdf
+  ✅ [Rank 260] 5102307_1_11 (DiffDock Rank: 3) -> 260_5102307_1_11_OrigRank3_pKd_4.08.sdf
+  ✅ [Rank 261] 5102307_1_14 (DiffDock Rank: 1) -> 261_5102307_1_14_OrigRank1_pKd_4.06.sdf
+  ✅ [Rank 262] 5101614_1 (DiffDock Rank: 3) -> 262_5101614_1_OrigRank3_pKd_4.04.sdf
+  ✅ [Rank 263] 5102307_1_2 (DiffDock Rank: 1) -> 263_5102307_1_2_OrigRank1_pKd_4.03.sdf
+  ✅ [Rank 264] 5102264_1_6 (DiffDock Rank: 1) -> 264_5102264_1_6_OrigRank1_pKd_4.01.sdf
+  ✅ [Rank 265] 5102263_1_4 (DiffDock Rank: 1) -> 265_5102263_1_4_OrigRank1_pKd_3.96.sdf
+  ✅ [Rank 266] 5104257_1 (DiffDock Rank: 1) -> 266_5104257_1_OrigRank1_pKd_3.96.sdf
+  ✅ [Rank 267] 5102307_1_13 (DiffDock Rank: 2) -> 267_5102307_1_13_OrigRank2_pKd_3.93.sdf
+  ✅ [Rank 268] 5104902_1 (DiffDock Rank: 1) -> 268_5104902_1_OrigRank1_pKd_3.92.sdf
+  ✅ [Rank 269] 5102263_1_8 (DiffDock Rank: 1) -> 269_5102263_1_8_OrigRank1_pKd_3.87.sdf
+  ✅ [Rank 270] 5100423_1_1 (DiffDock Rank: 1) -> 270_5100423_1_1_OrigRank1_pKd_3.84.sdf
+  ✅ [Rank 271] 5102263_1_1 (DiffDock Rank: 1) -> 271_5102263_1_1_OrigRank1_pKd_3.83.sdf
+  ✅ [Rank 272] 5102370_1 (DiffDock Rank: 4) -> 272_5102370_1_OrigRank4_pKd_3.81.sdf
+  ✅ [Rank 273] 5102300_1_2 (DiffDock Rank: 1) -> 273_5102300_1_2_OrigRank1_pKd_3.78.sdf
+  ✅ [Rank 274] 5103844_1 (DiffDock Rank: 1) -> 274_5103844_1_OrigRank1_pKd_3.78.sdf
+  ✅ [Rank 275] 02_1 (DiffDock Rank: 9) -> 275_02_1_OrigRank9_pKd_3.70.sdf
+  ✅ [Rank 276] 5102088_1 (DiffDock Rank: 1) -> 276_5102088_1_OrigRank1_pKd_3.70.sdf
+  ✅ [Rank 277] 5100352_1 (DiffDock Rank: 1) -> 277_5100352_1_OrigRank1_pKd_3.66.sdf
+  ✅ [Rank 278] 5100963_1 (DiffDock Rank: 2) -> 278_5100963_1_OrigRank2_pKd_3.66.sdf
+  ✅ [Rank 279] 5101806_1 (DiffDock Rank: 1) -> 279_5101806_1_OrigRank1_pKd_3.64.sdf
+  ✅ [Rank 280] 5103633_1 (DiffDock Rank: 1) -> 280_5103633_1_OrigRank1_pKd_3.52.sdf
+  ✅ [Rank 281] 5100922_1 (DiffDock Rank: 2) -> 281_5100922_1_OrigRank2_pKd_3.47.sdf
+  ✅ [Rank 282] 5102307_1_8 (DiffDock Rank: 1) -> 282_5102307_1_8_OrigRank1_pKd_3.41.sdf
+
+🎉 すべての処理が完了しました！
