@@ -1,0 +1,8 @@
+# 1. 変更・追加されたファイルをステージングエリアに追加
+git add .
+
+# 2. 変更内容をコミット（メッセージは適宜変更してください）
+git commit -m "Update screening pipeline and extraction utility scripts (ver06)"
+
+# 3. GitHubへPush
+git push
